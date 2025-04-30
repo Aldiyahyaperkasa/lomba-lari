@@ -9,9 +9,9 @@ class PesertaModel extends Model
     protected $table = 'peserta'; // Sesuaikan dengan nama tabel kamu
     protected $primaryKey = 'id_peserta';
     protected $allowedFields = [
-        'username', 'password', 'nama_peserta', 'no_telepon', 'nik', 'email',
-        'jenis_kelamin', 'ukuran_baju', 'asal_daerah', 'status_pendaftaran',
-        'bukti_pembayaran', 'kategori_lari'
+        'username', 'password', 'nama_peserta', 'tanggal_lahir', 'no_telepon', 'alamt', 'nik', 'email',
+        'jenis_kelamin', 'kategori_lari', 'ukuran_baju', 'usia', 'no_telepon_darurat_1', 
+        'no_telepon_darurat_2', 'status_pendaftaran', 'riwayat_penyakit', 'bukti_pembayaran',
     ];
 
 

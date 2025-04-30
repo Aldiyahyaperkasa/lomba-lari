@@ -3,295 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendaftaran Lomba Lari</title>
+    <link rel="icon" href="<?= base_url('assets/gambar/logo.jpeg') ?>" type="image/x-icon">
+    <title>Sangatta Festival Run 2025</title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 
     <!-- AOS Animate on Scroll -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-    <!-- SweetAlert2 CDN -->
+    <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-
-    <!-- Custom CSS Inline -->
+    <!-- Custom CSS -->
     <style>
         body {
-            font-family: 'Bebas Neue', poppins;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
         }
-        /* Navbar */
+
         .navbar {
-            background-color: #0095D9;
+            background-color: #FFD700;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #003366 !important;
         }
 
         .navbar-brand, .navbar-nav .nav-link {
-            color: white !important;
+            color: black !important;
+            font-weight: 500;
         }
 
-        .navbar-nav .nav-link:hover {
-            color: #fff !important;
+        .nav-link:hover {
+            color: #f72585 !important;
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, #0095D9, #00b3e6);
+        .btn-warning {
+            background-color: #003366;
             color: #fff;
+            font-weight: 600;
+        }
+
+        .btn-warning:hover {
+            background-color: #f72585;
+            color:  #fff;
+        }
+
+        .hero {
+            background: url("<?= base_url('assets/gambar/maskot-withbg.jpeg') ?>") center center / cover no-repeat;
+            color: white;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            position: relative;
             text-align: center;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, #001F3F, #003366);
+            /* background: rgba(0, 31, 63, 0.6); */
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 48px;
             font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 5px #000;
+        }
+        .hero p {
+            font-size: 20px;
+            color: #f1f1f1;
         }
 
-        .hero .btn-custom {
-            background-color: #0095D9;
-            color: #fff;
-            padding: 15px 30px;
-            font-size: 1.25rem;
+        .btn-cta {
+            background: #FFD700;
+            color: #3a0ca3;
             border-radius: 30px;
+            padding: 12px 30px;
+            font-weight: 600;
             border: none;
+            transition: 0.3s;
         }
 
-        .hero .btn-custom:hover {
-            background-color: #0088b1;
+        .btn-cta:hover {
+            background: #f72585;
+            color: white;
         }
 
-        /* Daftar Peserta */
-        .daftar-peserta {
-            background-color: #f0f8ff;
-            padding: 50px 0;
+        section {
+            padding: 80px 0;
         }
 
-        .daftar-peserta h2 {
-            color: #0095D9;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .daftar-peserta table {
-            width: 100%;
-            background-color: white;
+        table {
+            background: white;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
-        .daftar-peserta th, .daftar-peserta td {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .informasi {
-            background-color: #f0f8ff;
-            padding: 50px 0;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #f0f8ff;
-            color: black;
-            padding: 20px;
-            text-align: center;
+        th {
+            background: #007bff !important;
+            color: #fff;
         }
         
+        .color-span {
+            color: #f72585;            
+        }
+
+        .text-gradient {
+            color: #007bff;
+
+        }
+
+        .juknis-card {
+            border: 2px solid transparent;
+            border-radius: 15px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .juknis-card:hover {
+            border-color: #003366;
+            background: linear-gradient(135deg, #ffffff, #f0f8ff);
+            transform: translateY(-4px);
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .text-primary { color: #003366 !important; }
+        .bg-primary { background-color: #003366 !important; }
+
+        .text-success { color: #f72585 !important; }
+        .bg-success { background-color: #f72585 !important; }
+
+        .text-warning { color: #FFD700 !important; }
+        .bg-warning { background-color: #FFD700 !important; }
+
+
+        footer {
+            background: #FFD700;
+            color: #003366;
+            padding: 20px 0;
+        }
+
+        footer a {
+            color: #003366;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="#">Lomba Orienteering</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-            <a class="nav-link" href="#home">Home</a>
-            </li>
-            <!-- <li class="nav-item">
-            <a class="nav-link" href="#juknis"></a>
-            </li> -->
-            <li class="nav-item">
-                <a class="btn btn-light text-primary ms-2" href="<?= base_url('Login'); ?>">Daftar/Login</a>
-            </li>
-        </ul>
-        </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="<?= base_url('assets/gambar/logo.jpeg') ?>" alt="Logo" width="40" class="me-2">
+        Sangatta Festival Run 2025
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tentang">Tentang</a></li>
+        <li class="nav-item"><a class="nav-link" href="#peserta">Peserta</a></li>
+        <li class="nav-item"><a class="nav-link" href="#juknis">Juknis</a></li>
+        <a class="btn btn-warning ms-2" href="<?= base_url('Login'); ?>">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Daftar/Login
+        </a>
+
+      </ul>
     </div>
-    </nav>
+  </div>
+</nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div>
-            <h1 class="display-4">Lomba Lari Nasional 2025</h1>
-            <p class="lead">Daftar dan buktikan kecepatanmu! Total hadiah 80 juta rupiah!</p>
-            <a href="#pendaftaran" class="btn btn-custom btn-lg">Daftar Sekarang</a>
-        </div>
-    </section>
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="container" data-aos="fade-up">
+    <h1>Gabung dan Rasakan Sensasi Berlari di Sangatta Festival Run 2025!</h1>
+    <p>Acara lari terbesar di Sangatta dengan kategori Umum & Pelajar</p>
+    <a href="#tentang" class="btn btn-cta mt-3">Lihat Detail</a>
+  </div>
+</section>
 
-    <!-- Tentang Lomba -->
-    <section class="tentang py-5" id="tentang">
-        <div class="container">
-            <div class="row align-items-center" data-bs-aos="fade-up">
-                <div class="col-md-6">
-                    <img src="https://source.unsplash.com/600x400/?running,sport" alt="Lari" class="img-fluid">
-                </div>
-                <div class="col-md-6">
-                    <h2 class="mb-3">Tentang Lomba</h2>
-                    <p>Lomba Lari Nasional 2025 terbuka untuk umum dari seluruh Indonesia. Jalur penuh tantangan, hadiah menggiurkan, dan pengalaman tak terlupakan menantimu. Yuk gabung!</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Tentang -->
+<section id="tentang" class="bg-white">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-6">
+        <img src="<?= base_url() ?>assets/gambar/maskot.png" alt="Lomba" class="img-fluid rounded w-75">
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <h2 class="display-5 fw-bold" style="color:#007bff;">Tentang <span class="color-span">Lomba</span></h2>
+        <p>Lomba Lari Nasional 2025 terbuka untuk seluruh masyarakat Indonesia. Jalur menantang, hadiah besar, dan pengalaman tak terlupakan menanti Anda. Yuk gabung dan jadi bagian dari sejarah lomba lari terbesar tahun ini!</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Daftar Peserta Terkonfirmasi -->
-    <section class="daftar-peserta" id="peserta">
-        <div class="container">
-            <h2>Daftar Peserta Terkonfirmasi</h2>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead class="table-primary">
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Asal</th>
-                            <th>Nomor HP</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if (!empty($peserta)) : ?>
-                            <?php $no = 1; foreach ($peserta as $row) : ?>
-                            <tr>
-                                <td><?= $no++ ?></td>
-                                <td><?= esc($row['nama']) ?></td>
-                                <td><?= esc($row['asal']) ?></td>
-                                <td><?= esc($row['no_hp']) ?></td>
-                            </tr>
-                            <?php endforeach; ?>
-                        <?php else : ?>
-                            <tr>
-                                <td colspan="4" class="text-center">Belum ada peserta terkonfirmasi.</td>
-                            </tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+<!-- Peserta -->
+<section id="peserta" class="bg-white">
+  <div class="container" data-aos="fade-up">
+    <h2 class="text-center mb-4 display-5 fw-bold" style="color:#007bff;">Peserta <span class="color-span">Terkonfirmasi</span></h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th class="text-light">No</th>
+            <th class="text-light">Nama</th>
+            <th class="text-light">Asal</th>
+            <th class="text-light">Nomor HP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php if (!empty($peserta)) : ?>
+            <?php $no = 1; foreach ($peserta as $row) : ?>
+              <tr>
+                <td><?= $no++ ?></td>
+                <td><?= esc($row['nama']) ?></td>
+                <td><?= esc($row['asal']) ?></td>
+                <td><?= esc($row['no_hp']) ?></td>
+              </tr>
+            <?php endforeach; ?>
+          <?php else : ?>
+            <tr>
+              <td colspan="4" class="text-center">Belum ada peserta terkonfirmasi.</td>
+            </tr>
+          <?php endif; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
-    <!-- Informasi Lomba -->
-    <section class="informasi py-5 bg-light" id="informasi">
-        <div class="container">
-            <h2 class="text-center mb-4" data-bs-aos="fade-up">Informasi Penting</h2>
-            <div class="accordion" id="infoAccordion" data-bs-aos="fade-up">
-                <!-- Item 1 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                            🎯 Total Hadiah
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
-                            Rp. 80.000.000 untuk pemenang dari berbagai kategori!
-                        </div>
-                    </div>
-                </div>
+<!-- Juknis -->
+<section class="py-5 text-dark" id="juknis">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="display-5 fw-bold text-gradient">Juknis <span class="color-span">Lomba</span></h2>
+      <p class="lead text-muted">Informasi penting terkait <strong>Sangatta Festival Run 2025</strong></p>
+    </div>
 
-                <!-- Item 2 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                            🔗 Alur Pendaftaran
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse">
-                        <div class="accordion-body">
-                            1. Daftar akun ➔ 2. Upload pembayaran ➔ 3. Konfirmasi ➔ 4. Ikut lomba!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                            📝 Ketentuan Peserta
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse">
-                        <div class="accordion-body">
-                            - Usia minimal 17 tahun<br>
-                            - Sehat jasmani<br>
-                            - Membawa peralatan pribadi
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <!-- Kolom 1: Tentang Perusahaan -->
-          <div class="col-md-4 mb-4">
-            <h4 class="text-uppercase">Tentang Kami</h4>
-            <p>
-              lorem ipsum.
-            </p>
-          </div>
-
-          <!-- Kolom 2: Navigasi Singkat -->
-          <div class="col-md-4 mb-4">
-            <h4 class="text-uppercase">Navigasi</h4>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#home" class="text-dark text-decoration-none"
-                  >home</a
-                >
-              </li>              
+    <div class="accordion" id="juknisAccordion">
+      <!-- Kategori -->
+      <div class="accordion-item juknis-card mb-3">
+        <h2 class="accordion-header" id="kategoriHeading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kategoriCollapse">
+            <i class="bi bi-tags me-2"></i> Kategori
+          </button>
+        </h2>
+        <div id="kategoriCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li>Umum: 2.000 kuota</li>
+              <li>Pelajar: 200 kuota</li>
             </ul>
-          </div>
-
-          <!-- Kolom 3: Kontak -->
-          <div class="col-md-4 mb-4">
-            <h4 class="text-uppercase">Kontak</h4>
-            <p>
-              <i class="fas fa-map-marker-alt"></i> Jl.
-            </p>
-            <p><i class="fas fa-phone"></i> +62 </p>
-            <p><i class="fas fa-envelope"></i> .com</p>
-          </div>
-        </div>
-
-        <!-- Garis Pembatas -->
-        <hr class="bg-light" />
-
-        <!-- Bagian Bawah Footer -->
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <p class="mb-0">
-              <!-- &copy; 2025 CV. Imani Jaya Teknindo. Semua hak cipta dilindungi. -->
-            </p>
           </div>
         </div>
       </div>
-    </footer>
+
+      <!-- Fasilitas -->
+      <div class="accordion-item juknis-card mb-3">
+        <h2 class="accordion-header" id="fasilitasHeading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fasilitasCollapse">
+            <i class="bi bi-gift me-2"></i> Fasilitas
+          </button>
+        </h2>
+        <div id="fasilitasCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
+          <div class="accordion-body">
+            Setiap peserta akan mendapatkan kaos eksklusif Sangatta Festival Run 2025.
+          </div>
+        </div>
+      </div>
+
+      <!-- Pendaftaran -->
+      <div class="accordion-item juknis-card mb-3">
+        <h2 class="accordion-header" id="pendaftaranHeading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pendaftaranCollapse">
+            <i class="bi bi-calendar2-week me-2"></i> Pendaftaran
+          </button>
+        </h2>
+        <div id="pendaftaranCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
+          <div class="accordion-body">
+            Pendaftaran dibuka dari <strong>1 Mei 2025</strong> hingga <strong>30 Mei 2025</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- Tahap Pendaftaran -->
+      <div class="accordion-item juknis-card mb-3">
+        <h2 class="accordion-header" id="tahapHeading">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tahapCollapse">
+            <i class="bi bi-clipboard-check me-2"></i> Tahap Pendaftaran
+          </button>
+        </h2>
+        <div id="tahapCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
+          <div class="accordion-body">
+            <div class="row g-4">
+              <div class="col-md-4 text-center">
+                <div class="icon-circle bg-primary text-white mb-3">
+                  <i class="bi bi-person-plus fs-3"></i>
+                </div>
+                <h5 class="fw-semibold text-primary">1. Daftar Akun</h5>
+                <p class="text-muted">Isi data diri dan unggah bukti pembayaran.</p>
+              </div>
+              <div class="col-md-4 text-center">
+                <div class="icon-circle bg-success text-white mb-3">
+                  <i class="bi bi-shield-check fs-3"></i>
+                </div>
+                <h5 class="fw-semibold text-success">2. Verifikasi</h5>
+                <p class="text-muted">Admin memverifikasi dalam 1x24 jam.</p>
+              </div>
+              <div class="col-md-4 text-center">
+                <div class="icon-circle bg-warning text-white mb-3">
+                  <i class="bi bi-envelope-paper fs-3"></i>
+                </div>
+                <h5 class="fw-semibold text-warning">3. Terima Tiket</h5>
+                <p class="text-muted">Tiket dikirim ke email dalam bentuk QR Code.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
+<!-- Footer -->
+<footer class="footer mt-5">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5>Tentang Kami</h5>
+        <p>Panitia resmi lomba lari nasional 2025 yang berkomitmen menyelenggarakan event berkualitas, sehat, dan kompetitif.</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Navigasi</h5>
+        <ul class="list-unstyled">
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#tentang">Tentang</a></li>
+          <li><a href="#peserta">Peserta</a></li>
+          <li><a href="#juknis">Juknis</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Kontak</h5>
+        <p>Email: info@sfr2025.id</p>
+        <p>WhatsApp: 0812-3456-7890</p>
+      </div>
+    </div>
+    <hr style="border-color: #ccff66;">
+    <p>&copy; 2025 Sangatta Festival Run. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     <?php if (session()->getFlashdata('validation_errors')): ?>
@@ -317,16 +421,5 @@
         });
     <?php endif; ?>
 </script>
-
-
-    <!-- Bootstrap 5 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- AOS Animate -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
-
 </body>
 </html>

@@ -16,17 +16,71 @@
 
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
+            font-family: 'Segoe UI', sans-serif;
             background-color: #f8f9fa;
         }
 
-        .hero-section {
-            background: linear-gradient(135deg, #0095D9, #00b3e6);
+        .navbar {
+            background-color: #FFD700;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #003366 !important;
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: black !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #f72585 !important;
+        }
+
+        .btn-warning {
+            background-color: #003366;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .btn-warning:hover {
+            background-color: #f72585;
+            color:  #fff;
+        }
+        
+        .hero {
+            background: url("<?= base_url('assets/gambar/maskot-withbg.jpeg') ?>") center center/cover no-repeat;
             color: white;
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
-            border-bottom: 5px solid #0095D9;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, #001F3F, #003366);
+            /* background: rgba(0, 31, 63, 0.6); */
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 5px #000;
+        }
+        .hero p {
+            font-size: 20px;
+            color: #f1f1f1;
         }
 
         .container {
@@ -71,38 +125,36 @@
             background-color: #0056b3;
         }
 
-
-        .footer {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            font-size: 0.9rem;
+        /* form */
+        .form-control,
+        .form-select {
+            border-radius: 50px;
+            padding-left: 20px;
         }
 
-        .footer a {
-            color: #007bff;
+        .btn-warning {
+            background-color: #FFD700;
+            color: #003366;
+        }
+
+        .btn-warning:hover {
+            background-color: #f72585;
+            color: white;
+        }
+    
+        footer {
+            background: #FFD700;
+            color: #003366;
+            padding: 20px 0;
+        }
+
+        footer a {
+            color: #003366;
             text-decoration: none;
         }
 
-        .navbar-custom {
-            background-color: #0095D9;
-        }
-
-        .navbar-custom .navbar-brand {
-            font-family: 'Roboto', sans-serif;
-            /* font-size: 1.8rem; */
-            /* font-weight: 600; */
-            color: white;
-        }
-
-        .navbar-custom .navbar-nav .nav-link {
-            color: white;
-            font-size: 1.1rem;
-        }
-
-        .navbar-custom .navbar-nav .nav-link:hover {
-            color: #ffd700;
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -110,135 +162,191 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom" id="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">Lomba Lari 2025</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?= base_url('/'); ?>">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#daftarLogin">Daftar/Login</a>
-                    </li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="<?= base_url('assets/gambar/logo.jpeg') ?>" alt="Logo" width="40" class="me-2">
+            Sangatta Festival Run 2025
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="<?= base_url('/'); ?>">Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#daftarLogin">Daftar/Login</a>
+            </li>
+        </ul>
         </div>
+    </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <h1>Selamat Datang di Lomba Lari</h1>
-        <p>Daftarkan diri Anda untuk lomba lari yang menyenangkan dan menantang!</p>
-        <a href="#daftarLogin" class="btn btn-light text-primary btn-lg mt-3">Daftar/Login</a>
+    <!-- Hero -->
+    <section class="hero" id="home">
+    <div class="container" data-aos="fade-up">
+        <h1>Daftarkan Diri Anda!</h1>
+        <p>Acara lari terbesar di Sangatta dengan kategori Umum & Pelajar</p>
+    </div>
     </section>
 
     <!-- Daftar/Login Section -->
-    <section id="daftarLogin" class="container py-5">
-        <div class="row justify-content-center form-section">
-            <!-- Left: Form Pendaftaran -->
-            <div class="col-md-5 ">
-                <div class="card">
-                    <div class="card-body">
-                        <h3>Form Pendaftaran Peserta Lomba Lari</h3>
+    <section class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card border-0 shadow rounded-4">
+                    <div class="card-body p-5">
+                        <!-- Tabs for Login & Register -->
+                        <ul class="nav nav-tabs mb-4" id="formTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#loginTabContent" type="button" role="tab">Login</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#registerTabContent" type="button" role="tab">Daftar</button>
+                            </li>
+                        </ul>
 
-                        <!-- Form Pemilihan Kategori Lari -->
-                        <div class="form-group mb-4">
-                            <label for="kategoriLari">Pilih Kategori Lari</label>
-                            <select id="kategoriLari" name="kategori_lari" class="form-select" aria-label="Pilih Kategori Lari">
-                                <!-- opsi default dari js -->
-                                <option value="" selected>--Pilih Kategori--</option>
-                            </select>                            
-                        </div>
-                        <!-- Form Input Data Diri Peserta -->
-                        <form action="<?= base_url('PendaftaranController/store'); ?>" method="POST" id="formPeserta" style="display: none;" enctype="multipart/form-data">
-                            <input type="hidden" id="kategoriTerpilih" name="kategori_lari">
+                        <div class="tab-content" id="formTabContent">
+                            <!-- Login Form -->
+                            <div class="tab-pane fade show active" id="loginTabContent" role="tabpanel">
+                                <form action="<?= base_url('LoginController'); ?>" method="POST">
+                                    <div class="mb-3">
+                                        <label for="loginUsername" class="form-label">Username</label>
+                                        <input type="text" class="form-control rounded-pill" id="loginUsername" name="username" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="loginPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control rounded-pill" id="loginPassword" name="password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning w-100 rounded-pill fw-bold">Login</button>
+                                </form>
+                            </div>
 
-                            <div class="form-group mb-3">
-                                <label for="username">Username</label>
-                                <input type="text" id="username" name="username" class="form-control" value="<?= old('username') ?>" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="password">Password</label>
-                                <input type="password" id="password" name="password" class="form-control" value="<?= old('password') ?>" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="namaPeserta">Nama Peserta</label>
-                                <input type="text" id="namaPeserta" name="nama_peserta" class="form-control" value="<?= old('nama_peserta') ?>" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="noTelepon">Nomor Telepon</label>
-                                <input type="text" id="noTelepon" name="no_telepon" class="form-control" value="<?= old('no_telepon') ?>" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="nik">NIK</label>
-                                <input type="text" id="nik" name="nik" class="form-control" value="<?= old('nik') ?>" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" class="form-control" value="<?= old('email') ?>" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="jenisKelamin">Jenis Kelamin</label>
-                                <select id="jenisKelamin" name="jenis_kelamin" class="form-select" value="<?= old('jenis_kelamin') ?>" required>
-                                    <option value="Laki-laki">Laki-laki</option>
-                                    <option value="Perempuan">Perempuan</option>
-                                </select>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="buktiBayar">Bukti Pembayaran</label>
-                                <input type="file" id="buktiBayar" name="bukti_pembayaran" class="form-control" value="<?= old('bukti_bayar') ?>" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="ukuranBaju">Ukuran Baju</label>
-                                <select id="ukuranBaju" name="ukuran_baju" class="form-select" value="<?= old('ukuran_baju') ?>" required>
-                                    <option value="S">S</option>
-                                    <option value="M">M</option>
-                                    <option value="L">L</option>
-                                    <option value="XL">XL</option>
-                                    <option value="XXL">XXL</option>
-                                </select>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="asalDaerah">Asal Daerah</label>
-                                <input type="text" id="asalDaerah" name="asal_daerah" class="form-control" value="<?= old('asal_daerah') ?>" required>
-                            </div>
-                            <button type="submit" class="btn btn-custom">Daftar Sekarang</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+                            <!-- Register Form -->
+                            <div class="tab-pane fade" id="registerTabContent" role="tabpanel">
+                                <div class="form-group mb-4">
+                                    <label for="kategoriLari">Pilih Kategori Lari</label>
+                                    <select id="kategoriLari" name="kategori_lari" class="form-select" aria-label="Pilih Kategori Lari">
+                                        <!-- opsi default dari js -->
+                                        <option value="" selected>--Pilih Kategori--</option>
+                                    </select>                            
+                                </div>  
 
-            <!-- Right: Form Login -->
-            <div class="col-md-5">
-                <div class="card">
-                    <div class="card-body">
-                        <h3>Form Login</h3>
-                        <form action="<?= base_url('LoginController'); ?>" method="POST">
-                            <div class="form-group mb-3">
-                                <label for="loginUsername">Username</label>
-                                <input type="text" id="loginUsername" name="username" class="form-control" required>
+                                <form action="<?= base_url('PendaftaranController/store'); ?>" method="POST" id="formPeserta" style="display: none;" enctype="multipart/form-data">
+                                    <input type="hidden" id="kategoriTerpilih" name="kategori_lari">
+
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input type="text" class="form-control rounded-pill" id="username" name="username" value="<?= old('username') ?>" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="password" class="form-control rounded-pill" id="password" name="password" value="<?= old('password') ?>" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="namaPeserta" class="form-label">Nama Lengkap</label>
+                                            <input type="text" class="form-control rounded-pill" id="namaPeserta" name="nama_peserta" value="<?= old('nama_peserta') ?>" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
+                                            <input type="date" class="form-control rounded-pill" id="tanggalLahir" name="tanggal_lahir" value="<?= old('tanggal_lahir') ?>" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="noTelepon" class="form-label">Nomor Telepon</label>
+                                            <input type="text" class="form-control rounded-pill" id="noTelepon" name="no_telepon" value="<?= old('no_telepon') ?>" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="alamat" class="form-label">Alamat</label>
+                                            <input type="text" class="form-control rounded-pill" id="alamat" name="alamat" value="<?= old('alamat') ?>" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="nik" class="form-label">NIK</label>
+                                            <input type="text" class="form-control rounded-pill" id="nik" name="nik" value="<?= old('nik') ?>" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control rounded-pill" id="email" name="email" value="<?= old('email') ?>" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
+                                            <select id="jenisKelamin" name="jenis_kelamin" class="form-select rounded-pill" required>
+                                                <option value="Laki-laki" <?= old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' ?>>Laki-laki</option>
+                                                <option value="Perempuan" <?= old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' ?>>Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="ukuranBaju" class="form-label">Ukuran Baju</label>
+                                            <select id="ukuranBaju" name="ukuran_baju" class="form-select rounded-pill" required>
+                                                <option value="S" <?= old('ukuran_baju') == 'S' ? 'selected' : '' ?>>S</option>
+                                                <option value="M" <?= old('ukuran_baju') == 'M' ? 'selected' : '' ?>>M</option>
+                                                <option value="L" <?= old('ukuran_baju') == 'L' ? 'selected' : '' ?>>L</option>
+                                                <option value="XL" <?= old('ukuran_baju') == 'XL' ? 'selected' : '' ?>>XL</option>
+                                                <option value="XXL" <?= old('ukuran_baju') == 'XXL' ? 'selected' : '' ?>>XXL</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="usia" class="form-label">Usia</label>
+                                            <input type="number" class="form-control rounded-pill" id="usia" name="usia" value="<?= old('usia') ?>" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="noDarurat1" class="form-label">Nomor Telepon Darurat 1</label>
+                                            <input type="text" class="form-control rounded-pill" id="noDarurat1" name="no_telepon_darurat_1" value="<?= old('no_telepon_darurat_1') ?>" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="noDarurat2" class="form-label">Nomor Telepon Darurat 2</label>
+                                            <input type="text" class="form-control rounded-pill" id="noDarurat2" name="no_telepon_darurat_2" value="<?= old('no_telepon_darurat_2') ?>">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="riwayatPenyakit" class="form-label">Riwayat Penyakit</label>
+                                            <textarea class="form-control rounded-pill" id="riwayatPenyakit" name="riwayat_penyakit" rows="2" placeholder="Jika tidak ada, biarkan kosong"><?= old('riwayat_penyakit') ?></textarea>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="buktiBayar" class="form-label">Upload Bukti Pembayaran</label>
+                                            <input type="file" class="form-control rounded-pill" id="buktiBayar" name="bukti_pembayaran" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <button type="submit" class="btn btn-success w-100 rounded-pill fw-bold">Daftar Sekarang</button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="loginPassword">Password</label>
-                                <input type="password" id="loginPassword" name="password" class="form-control" required>
-                            </div>
-                            <button type="submit" class="btn btn-custom">Login</button>
-                        </form>
+                        </div> <!-- tab content -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2025 Lomba Lari | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+<!-- Footer -->
+    <footer class="footer mt-5">
+    <div class="container text-center">
+        <div class="row">
+        <div class="col-md-4 mb-3">
+            <h5>Tentang Kami</h5>
+            <p>Panitia resmi lomba lari nasional 2025 yang berkomitmen menyelenggarakan event berkualitas, sehat, dan kompetitif.</p>
+        </div>
+        <div class="col-md-4 mb-3">
+            <h5>Navigasi</h5>
+            <ul class="list-unstyled">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#tentang">Tentang</a></li>
+            <li><a href="#peserta">Peserta</a></li>
+            <li><a href="#juknis">Juknis</a></li>
+            </ul>
+        </div>
+        <div class="col-md-4 mb-3">
+            <h5>Kontak</h5>
+            <p>Email: info@sfr2025.id</p>
+            <p>WhatsApp: 0812-3456-7890</p>
+        </div>
+        </div>
+        <hr style="border-color: #ccff66;">
+        <p>&copy; 2025 Sangatta Festival Run. All rights reserved.</p>
+    </div>
     </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -269,82 +377,82 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-window.onload = function () {
-    let select = document.getElementById('kategoriLari');
+    <script>
+        window.onload = function () {
+            let select = document.getElementById('kategoriLari');
 
-fetch('<?= base_url('PendaftaranController/getKuotaSemua'); ?>')
-    .then(response => response.json())
-    .then(data => {
-        const kuotaUmum = data.umumCount ?? 0;    // fallback 0 jika undefined
-        const kuotaPelajar = data.pelajarCount ?? 0;
+        fetch('<?= base_url('PendaftaranController/getKuotaSemua'); ?>')
+            .then(response => response.json())
+            .then(data => {
+                const kuotaUmum = data.umumCount ?? 0;    // fallback 0 jika undefined
+                const kuotaPelajar = data.pelajarCount ?? 0;
 
-        const maxUmum = 2000;
-        const maxPelajar = 200;
+                const maxUmum = 2000;
+                const maxPelajar = 200;
 
-        let select = document.getElementById('kategoriLari');
-        select.innerHTML = '<option value="">--Pilih Kategori--</option>'; // clear existing
+                let select = document.getElementById('kategoriLari');
+                select.innerHTML = '<option value="">--Pilih Kategori--</option>'; // clear existing
 
-        // Opsi Umum
-        let optionUmum = document.createElement('option');
-        optionUmum.value = 'Umum';
-        optionUmum.textContent = `Umum ${kuotaUmum}/${maxUmum}`;
-        optionUmum.disabled = kuotaUmum >= maxUmum;
-        select.appendChild(optionUmum);
+                // Opsi Umum
+                let optionUmum = document.createElement('option');
+                optionUmum.value = 'Umum';
+                optionUmum.textContent = `Umum ${kuotaUmum}/${maxUmum}`;
+                optionUmum.disabled = kuotaUmum >= maxUmum;
+                select.appendChild(optionUmum);
 
-        // Opsi Pelajar
-        let optionPelajar = document.createElement('option');
-        optionPelajar.value = 'Pelajar';
-        optionPelajar.textContent = `Pelajar ${kuotaPelajar}/${maxPelajar}`;
-        optionPelajar.disabled = kuotaPelajar >= maxPelajar;
-        select.appendChild(optionPelajar);
+                // Opsi Pelajar
+                let optionPelajar = document.createElement('option');
+                optionPelajar.value = 'Pelajar';
+                optionPelajar.textContent = `Pelajar ${kuotaPelajar}/${maxPelajar}`;
+                optionPelajar.disabled = kuotaPelajar >= maxPelajar;
+                select.appendChild(optionPelajar);
 
-        // Simpan kuota ke atribut data
-        select.dataset.kuotaUmum = kuotaUmum;
-        select.dataset.kuotaPelajar = kuotaPelajar;
-    })
-    .catch(error => {
-        console.error('❌ Gagal ambil kuota:', error);
-    });
+                // Simpan kuota ke atribut data
+                select.dataset.kuotaUmum = kuotaUmum;
+                select.dataset.kuotaPelajar = kuotaPelajar;
+            })
+            .catch(error => {
+                console.error('❌ Gagal ambil kuota:', error);
+            });
 
-};
+        };
 
-document.getElementById('kategoriLari').addEventListener('change', function () {
-    let kategori = this.value;
-    let hiddenKategori = document.getElementById('kategoriTerpilih');
-    let form = document.getElementById('formPeserta');
+        document.getElementById('kategoriLari').addEventListener('change', function () {
+            let kategori = this.value;
+            let hiddenKategori = document.getElementById('kategoriTerpilih');
+            let form = document.getElementById('formPeserta');
 
-    const kuotaUmum = parseInt(this.dataset.kuotaUmum);
-    const kuotaPelajar = parseInt(this.dataset.kuotaPelajar);
+            const kuotaUmum = parseInt(this.dataset.kuotaUmum);
+            const kuotaPelajar = parseInt(this.dataset.kuotaPelajar);
 
-    const maxUmum = 2000;
-    const maxPelajar = 200;
+            const maxUmum = 2000;
+            const maxPelajar = 200;
 
-    if (kategori === 'Umum' && kuotaUmum >= maxUmum) {
-        alert('❌ Kuota kategori Umum sudah penuh!');
-        this.value = '';
-        hiddenKategori.value = '';
-        form.style.display = 'none';
-        return;
-    }
+            if (kategori === 'Umum' && kuotaUmum >= maxUmum) {
+                alert('❌ Kuota kategori Umum sudah penuh!');
+                this.value = '';
+                hiddenKategori.value = '';
+                form.style.display = 'none';
+                return;
+            }
 
-    if (kategori === 'Pelajar' && kuotaPelajar >= maxPelajar) {
-        alert('❌ Kuota kategori Pelajar sudah penuh!');
-        this.value = '';
-        hiddenKategori.value = '';
-        form.style.display = 'none';
-        return;
-    }
+            if (kategori === 'Pelajar' && kuotaPelajar >= maxPelajar) {
+                alert('❌ Kuota kategori Pelajar sudah penuh!');
+                this.value = '';
+                hiddenKategori.value = '';
+                form.style.display = 'none';
+                return;
+            }
 
-    if (kategori !== '') {
-        hiddenKategori.value = kategori;
-        form.style.display = 'block';
-    } else {
-        hiddenKategori.value = '';
-        form.style.display = 'none';
-    }
-});
-</script>
+            if (kategori !== '') {
+                hiddenKategori.value = kategori;
+                form.style.display = 'block';
+            } else {
+                hiddenKategori.value = '';
+                form.style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 
