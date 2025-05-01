@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="<?= base_url('assets/gambar/logo.jpeg') ?>" type="image/x-icon">
+    <link rel="icon" href="<?= base_url('assets/gambar/logo.png') ?>" type="image/x-icon">
     <title>Sangatta Festival Run 2025</title>
 
     <!-- Google Fonts -->
@@ -28,16 +28,12 @@
         }
 
         .navbar {
-            background-color: #FFD700;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-            color: #003366 !important;
+            transition: background-color 0.3s ease;
+            background-color: transparent;
         }
 
         .navbar-brand, .navbar-nav .nav-link {
-            color: black !important;
+            color: #fff !important;
             font-weight: 500;
         }
 
@@ -45,15 +41,31 @@
             color: #f72585 !important;
         }
 
-        .btn-warning {
-            background-color: #003366;
+        .navbar.navbar-scrolled {
+            background-color: #fff !important;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar.navbar-scrolled .navbar-brand,
+        .navbar.navbar-scrolled .nav-link {
+            color: #0095D9 !important;
+        }
+
+        .navbar.navbar-scrolled .navbar-brand,
+        .navbar.navbar-scrolled .nav-link:hover {
+            color: #f72585 !important;
+        }
+
+        .btn-login {
+            background-color: #f72585;
             color: #fff;
             font-weight: 600;
         }
 
-        .btn-warning:hover {
-            background-color: #f72585;
+        .btn-login:hover {
+            background-color: transparent;
             color:  #fff;
+            border: 1px solid #fff;
         }
 
         .hero {
@@ -83,14 +95,14 @@
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 2rem;
             font-weight: bold;
             color: white;
             text-shadow: 2px 2px 5px #000;
         }
         .hero p {
-            font-size: 20px;
-            color: #f1f1f1;
+            font-size: 1rem;
+            color: #fff;
         }
 
         .btn-cta {
@@ -188,19 +200,19 @@
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="<?= base_url('assets/gambar/logo.jpeg') ?>" alt="Logo" width="40" class="me-2">
-        Sangatta Festival Run 2025
+        <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo" width="60" class="me-2">
+        <!-- Sangatta Festival Run 2025 -->
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#tentang">Tentang</a></li>
-        <li class="nav-item"><a class="nav-link" href="#peserta">Peserta</a></li>
-        <li class="nav-item"><a class="nav-link" href="#juknis">Juknis</a></li>
-        <a class="btn btn-warning ms-2" href="<?= base_url('Login'); ?>">
+        <li class="nav-item"><a class="nav-link fw-bold" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold" href="#tentang">Tentang</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold" href="#peserta">Peserta</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold" href="#juknis">Juknis</a></li>
+        <a class="btn btn-login ms-2" href="<?= base_url('LoginController'); ?>">
             <i class="bi bi-box-arrow-in-right me-1"></i> Daftar/Login
         </a>
 
@@ -211,10 +223,10 @@
 
 <!-- Hero -->
 <section class="hero" id="home">
-  <div class="container" data-aos="fade-up">
-    <h1>Gabung dan Rasakan Sensasi Berlari di Sangatta Festival Run 2025!</h1>
-    <p>Acara lari terbesar di Sangatta dengan kategori Umum & Pelajar</p>
-    <a href="#tentang" class="btn btn-cta mt-3">Lihat Detail</a>
+  <div class="container" >
+    <h1 data-aos="fade-left">Gabung dan Rasakan Sensasi Berlari di Sangatta Festival Run 2025!</h1>
+    <p data-aos="fade-right">Acara lari terbesar di Sangatta dengan kategori Umum & Pelajar</p>
+    <a href="#juknis" class="btn btn-cta mt-3" data-aos="fade-up">Informasi Detail</a>
   </div>
 </section>
 
@@ -222,10 +234,10 @@
 <section id="tentang" class="bg-white">
   <div class="container">
     <div class="row justify-content-center align-items-center">
-      <div class="col-md-6">
-        <img src="<?= base_url() ?>assets/gambar/maskot.png" alt="Lomba" class="img-fluid rounded w-75">
+      <div class="col-md-6 text-center" data-aos="">
+        <img src="<?= base_url() ?>assets/gambar/maskot.png" alt="Lomba" class="img-fluid rounded w-50">
       </div>
-      <div class="col-md-6 mt-4 mt-md-0">
+      <div class="col-md-6 mt-4 mt-md-0" data-aos="">
         <h2 class="display-5 fw-bold" style="color:#007bff;">Tentang <span class="color-span">Lomba</span></h2>
         <p>Lomba Lari Nasional 2025 terbuka untuk seluruh masyarakat Indonesia. Jalur menantang, hadiah besar, dan pengalaman tak terlupakan menanti Anda. Yuk gabung dan jadi bagian dari sejarah lomba lari terbesar tahun ini!</p>
       </div>
@@ -235,9 +247,9 @@
 
 <!-- Peserta -->
 <section id="peserta" class="bg-white">
-  <div class="container" data-aos="fade-up">
-    <h2 class="text-center mb-4 display-5 fw-bold" style="color:#007bff;">Peserta <span class="color-span">Terkonfirmasi</span></h2>
-    <div class="table-responsive">
+  <div class="container">
+    <h2 class="text-center mb-4 display-5 fw-bold" style="color:#007bff;" data-aos="fade-down">Peserta <span class="color-span">Terkonfirmasi</span></h2>
+    <div class="table-responsive" data-aos="fade-up" data-aos-delay="200">
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
@@ -271,14 +283,14 @@
 <!-- Juknis -->
 <section class="py-5 text-dark" id="juknis">
   <div class="container">
-    <div class="text-center mb-4">
+    <div class="text-center mb-4" data-aos="fade-up">
       <h2 class="display-5 fw-bold text-gradient">Juknis <span class="color-span">Lomba</span></h2>
       <p class="lead text-muted">Informasi penting terkait <strong>Sangatta Festival Run 2025</strong></p>
     </div>
 
     <div class="accordion" id="juknisAccordion">
       <!-- Kategori -->
-      <div class="accordion-item juknis-card mb-3">
+      <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="50">
         <h2 class="accordion-header" id="kategoriHeading">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kategoriCollapse">
             <i class="bi bi-tags me-2"></i> Kategori
@@ -295,7 +307,7 @@
       </div>
 
       <!-- Fasilitas -->
-      <div class="accordion-item juknis-card mb-3">
+      <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="100">
         <h2 class="accordion-header" id="fasilitasHeading">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fasilitasCollapse">
             <i class="bi bi-gift me-2"></i> Fasilitas
@@ -309,7 +321,7 @@
       </div>
 
       <!-- Pendaftaran -->
-      <div class="accordion-item juknis-card mb-3">
+      <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="150">
         <h2 class="accordion-header" id="pendaftaranHeading">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pendaftaranCollapse">
             <i class="bi bi-calendar2-week me-2"></i> Pendaftaran
@@ -323,7 +335,7 @@
       </div>
 
       <!-- Tahap Pendaftaran -->
-      <div class="accordion-item juknis-card mb-3">
+      <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="200">
         <h2 class="accordion-header" id="tahapHeading">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tahapCollapse">
             <i class="bi bi-clipboard-check me-2"></i> Tahap Pendaftaran
@@ -363,7 +375,7 @@
 
 
 <!-- Footer -->
-<footer class="footer mt-5">
+<footer class="footer mt-5" data-aos="fade-up" data-aos-delay="100">
   <div class="container text-center">
     <div class="row">
       <div class="col-md-4 mb-3">
@@ -391,6 +403,20 @@
 </footer>
 
 <!-- Script -->
+<!-- navbar scroll -->
+<script>
+  window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('navbar-scrolled');
+    } else {
+      navbar.classList.remove('navbar-scrolled');
+    }
+  });
+</script>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>

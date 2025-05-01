@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendaftaran Lomba Lari</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>">
-    <!-- SweetAlert2 CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+    <link rel="icon" href="<?= base_url('assets/gambar/logo.png') ?>" type="image/x-icon">
+    <title>Sangatta Festival Run 2025</title>
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         body {
@@ -21,20 +24,31 @@
         }
 
         .navbar {
-            background-color: #FFD700;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-            color: #003366 !important;
+            transition: background-color 0.3s ease;
+            background-color: transparent;
         }
 
         .navbar-brand, .navbar-nav .nav-link {
-            color: black !important;
+            color: #fff !important;
             font-weight: 500;
         }
 
         .nav-link:hover {
+            color: #f72585 !important;
+        }
+
+        .navbar.navbar-scrolled {
+            background-color: #fff !important;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar.navbar-scrolled .navbar-brand,
+        .navbar.navbar-scrolled .nav-link {
+            color: #0095D9 !important;
+        }
+
+        .navbar.navbar-scrolled .navbar-brand,
+        .navbar.navbar-scrolled .nav-link:hover {
             color: #f72585 !important;
         }
 
@@ -64,6 +78,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(to bottom right, #001F3F, #003366);
+            /* background: linear-gradient(135deg, #5ce1e6, #00b3e6); */
             /* background: rgba(0, 31, 63, 0.6); */
         }
 
@@ -73,14 +88,14 @@
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 2rem;
             font-weight: bold;
             color: white;
             text-shadow: 2px 2px 5px #000;
         }
         .hero p {
-            font-size: 20px;
-            color: #f1f1f1;
+            font-size: 1rem;
+            color: #fff;
         }
 
         .container {
@@ -165,8 +180,8 @@
     <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="<?= base_url('assets/gambar/logo.jpeg') ?>" alt="Logo" width="40" class="me-2">
-            Sangatta Festival Run 2025
+            <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo" width="60" class="me-2">
+            <!-- Sangatta Festival Run 2025 -->
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -174,10 +189,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="<?= base_url('/'); ?>">Beranda</a>
+                <a class="nav-link active fw-bold" aria-current="page" href="<?= base_url('/'); ?>">Beranda</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#daftarLogin">Daftar/Login</a>
+                <a class="nav-link fw-bold" href="#login/daftar">Daftar/Login</a>
             </li>
         </ul>
         </div>
@@ -193,7 +208,8 @@
     </section>
 
     <!-- Daftar/Login Section -->
-    <section class="container py-5">
+    <section class="container" id="login/daftar" style="padding-top:100px;">
+        <!-- <h1 class="text-center">Silahkan Masukkan Data Anda </h1> -->
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="card border-0 shadow rounded-4">
@@ -211,7 +227,7 @@
                         <div class="tab-content" id="formTabContent">
                             <!-- Login Form -->
                             <div class="tab-pane fade show active" id="loginTabContent" role="tabpanel">
-                                <form action="<?= base_url('LoginController'); ?>" method="POST">
+                                <form action="<?= base_url('LoginController/submit'); ?>" method="POST">
                                     <div class="mb-3">
                                         <label for="loginUsername" class="form-label">Username</label>
                                         <input type="text" class="form-control rounded-pill" id="loginUsername" name="username" required>
@@ -220,7 +236,7 @@
                                         <label for="loginPassword" class="form-label">Password</label>
                                         <input type="password" class="form-control rounded-pill" id="loginPassword" name="password" required>
                                     </div>
-                                    <button type="submit" class="btn btn-warning w-100 rounded-pill fw-bold">Login</button>
+                                    <button type="submit" class="btn btn-success w-100 rounded-pill fw-bold">Login</button>
                                 </form>
                             </div>
 
@@ -349,34 +365,47 @@
     </div>
     </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    <?php if (session()->getFlashdata('validation_errors')): ?>
-        let errorMessages = <?= json_encode(session()->getFlashdata('validation_errors')) ?>;
-        let combinedErrors = Object.values(errorMessages).join('<br>');
-        Swal.fire({
-            icon: 'error',
-            title: 'Validasi Gagal',
-            html: combinedErrors,
-            confirmButtonText: 'OK'
-        });
-    <?php elseif (session()->getFlashdata('error')): ?>
-        Swal.fire({
-            icon: 'error',
-            title: 'Gagal',
-            text: '<?= session()->getFlashdata('error') ?>'
-        });
-    <?php elseif (session()->getFlashdata('success')): ?>
-        Swal.fire({
-            icon: 'success',
-            title: 'Sukses',
-            text: '<?= session()->getFlashdata('success') ?>'
-        });
-    <?php endif; ?>
-</script>
 
+    <!-- navbar scroll -->
+    <script>
+    window.addEventListener('scroll', function () {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+        navbar.classList.add('navbar-scrolled');
+        } else {
+        navbar.classList.remove('navbar-scrolled');
+        }
+    });
+    </script>
 
+    <script>
+        <?php if (session()->getFlashdata('validation_errors')): ?>
+            let errorMessages = <?= json_encode(session()->getFlashdata('validation_errors')) ?>;
+            let combinedErrors = Object.values(errorMessages).join('<br>');
+            Swal.fire({
+                icon: 'error',
+                title: 'Validasi Gagal',
+                html: combinedErrors,
+                confirmButtonText: 'OK'
+            });
+        <?php elseif (session()->getFlashdata('error')): ?>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '<?= session()->getFlashdata('error') ?>'
+            });
+        <?php elseif (session()->getFlashdata('success')): ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses',
+                text: '<?= session()->getFlashdata('success') ?>'
+            });
+        <?php endif; ?>
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         window.onload = function () {
             let select = document.getElementById('kategoriLari');

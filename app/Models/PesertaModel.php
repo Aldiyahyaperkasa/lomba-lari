@@ -16,10 +16,10 @@ class PesertaModel extends Model
 
 
     // Metode untuk menghitung peserta berdasarkan kategori dan status
-public function countPesertaByKategoriAndStatus(string $kategori, array $status = ['Terkonfirmasi', 'Menunggu']): int
-{
-    return $this->where('kategori_lari', $kategori)
-                ->whereIn('status_pendaftaran', $status)
-                ->countAllResults();
-}
+    public function countPesertaByKategoriAndStatus(string $kategori, array $status = ['Terkonfirmasi', 'Menunggu']): int
+    {
+        return $this->where('kategori_lari', $kategori)
+                    ->whereIn('status_pendaftaran', $status)
+                    ->countAllResults();
+    }
 }
