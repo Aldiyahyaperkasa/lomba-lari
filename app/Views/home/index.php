@@ -64,8 +64,8 @@
 
         .btn-login:hover {
             background-color: transparent;
-            color:  #fff;
-            border: 1px solid #fff;
+            color:  #FFD700;
+            border: 3px solid #FFD700;
         }
 
         .hero {
@@ -196,256 +196,256 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg fixed-top">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo" width="60" class="me-2">
-        <!-- Sangatta Festival Run 2025 -->
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link fw-bold" href="#home">Home</a></li>
-        <li class="nav-item"><a class="nav-link fw-bold" href="#tentang">Tentang</a></li>
-        <li class="nav-item"><a class="nav-link fw-bold" href="#peserta">Peserta</a></li>
-        <li class="nav-item"><a class="nav-link fw-bold" href="#juknis">Juknis</a></li>
-        <a class="btn btn-login ms-2" href="<?= base_url('LoginController'); ?>">
-            <i class="bi bi-box-arrow-in-right me-1"></i> Daftar/Login
-        </a>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo" width="60" class="me-2">
+          <!-- Sangatta Festival Run 2025 -->
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link fw-bold" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold" href="#tentang">Tentang</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold" href="#peserta">Peserta</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold" href="#juknis">Juknis</a></li>
+          <a class="btn btn-login ms-2" href="<?= base_url('LoginController'); ?>">
+              <i class="bi bi-box-arrow-in-right me-1"></i> Daftar/Login
+          </a>
 
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- Hero -->
-<section class="hero" id="home">
-  <div class="container" >
-    <h1 data-aos="fade-left">Gabung dan Rasakan Sensasi Berlari di Sangatta Festival Run 2025!</h1>
-    <p data-aos="fade-right">Acara lari terbesar di Sangatta dengan kategori Umum & Pelajar</p>
-    <a href="#juknis" class="btn btn-cta mt-3" data-aos="fade-up">Informasi Detail</a>
-  </div>
-</section>
-
-<!-- Tentang -->
-<section id="tentang" class="bg-white">
-  <div class="container">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-md-6 text-center" data-aos="">
-        <img src="<?= base_url() ?>assets/gambar/maskot.png" alt="Lomba" class="img-fluid rounded w-50">
-      </div>
-      <div class="col-md-6 mt-4 mt-md-0" data-aos="">
-        <h2 class="display-5 fw-bold" style="color:#007bff;">Tentang <span class="color-span">Lomba</span></h2>
-        <p>Lomba Lari Nasional 2025 terbuka untuk seluruh masyarakat Indonesia. Jalur menantang, hadiah besar, dan pengalaman tak terlupakan menanti Anda. Yuk gabung dan jadi bagian dari sejarah lomba lari terbesar tahun ini!</p>
+        </ul>
       </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- Peserta -->
-<section id="peserta" class="bg-white">
-  <div class="container">
-    <h2 class="text-center mb-4 display-5 fw-bold" style="color:#007bff;" data-aos="fade-down">Peserta <span class="color-span">Terkonfirmasi</span></h2>
-    <div class="table-responsive" data-aos="fade-up" data-aos-delay="200">
-      <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th class="text-light">No</th>
-            <th class="text-light">Nama</th>
-            <th class="text-light">Asal</th>
-            <th class="text-light">Nomor HP</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php if (!empty($peserta)) : ?>
-            <?php $no = 1; foreach ($peserta as $row) : ?>
-              <tr>
-                <td><?= $no++ ?></td>
-                <td><?= esc($row['nama']) ?></td>
-                <td><?= esc($row['asal']) ?></td>
-                <td><?= esc($row['no_hp']) ?></td>
-              </tr>
-            <?php endforeach; ?>
-          <?php else : ?>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container" >
+      <h1 data-aos="fade-left">Gabung dan Rasakan Sensasi Berlari di Sangatta Festival Run 2025!</h1>
+      <p data-aos="fade-right">Acara lari terbesar di Sangatta dengan kategori Umum & Pelajar</p>
+      <a href="#juknis" class="btn btn-cta mt-3" data-aos="fade-up">Informasi Detail</a>
+    </div>
+  </section>
+
+  <!-- Tentang -->
+  <section id="tentang" class="bg-white">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 text-center" data-aos="">
+          <img src="<?= base_url() ?>assets/gambar/maskot.png" alt="Lomba" class="img-fluid rounded w-50">
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0" data-aos="">
+          <h2 class="display-5 fw-bold" style="color:#007bff;">Tentang <span class="color-span">Lomba</span></h2>
+          <p>Lomba Lari Nasional 2025 terbuka untuk seluruh masyarakat Indonesia. Jalur menantang, hadiah besar, dan pengalaman tak terlupakan menanti Anda. Yuk gabung dan jadi bagian dari sejarah lomba lari terbesar tahun ini!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Peserta -->
+  <section id="peserta" class="bg-white">
+    <div class="container">
+      <h2 class="text-center mb-4 display-5 fw-bold" style="color:#007bff;" data-aos="fade-down">Peserta <span class="color-span">Terkonfirmasi</span></h2>
+      <div class="table-responsive" data-aos="fade-up" data-aos-delay="200">
+        <table class="table table-striped table-bordered">
+          <thead>
             <tr>
-              <td colspan="4" class="text-center">Belum ada peserta terkonfirmasi.</td>
+              <th class="text-light">No</th>
+              <th class="text-light">Nama</th>
+              <th class="text-light">Asal</th>
+              <th class="text-light">Nomor HP</th>
             </tr>
-          <?php endif; ?>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <?php if (!empty($peserta)) : ?>
+              <?php $no = 1; foreach ($peserta as $row) : ?>
+                <tr>
+                  <td><?= $no++ ?></td>
+                  <td><?= esc($row['nama']) ?></td>
+                  <td><?= esc($row['asal']) ?></td>
+                  <td><?= esc($row['no_hp']) ?></td>
+                </tr>
+              <?php endforeach; ?>
+            <?php else : ?>
+              <tr>
+                <td colspan="4" class="text-center">Belum ada peserta terkonfirmasi.</td>
+              </tr>
+            <?php endif; ?>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Juknis -->
-<section class="py-5 text-dark" id="juknis">
-  <div class="container">
-    <div class="text-center mb-4" data-aos="fade-up">
-      <h2 class="display-5 fw-bold text-gradient">Juknis <span class="color-span">Lomba</span></h2>
-      <p class="lead text-muted">Informasi penting terkait <strong>Sangatta Festival Run 2025</strong></p>
-    </div>
-
-    <div class="accordion" id="juknisAccordion">
-      <!-- Kategori -->
-      <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="50">
-        <h2 class="accordion-header" id="kategoriHeading">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kategoriCollapse">
-            <i class="bi bi-tags me-2"></i> Kategori
-          </button>
-        </h2>
-        <div id="kategoriCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
-          <div class="accordion-body">
-            <ul>
-              <li>Umum: 2.000 kuota</li>
-              <li>Pelajar: 200 kuota</li>
-            </ul>
-          </div>
-        </div>
+  <!-- Juknis -->
+  <section class="py-5 text-dark" id="juknis">
+    <div class="container">
+      <div class="text-center mb-4" data-aos="fade-up">
+        <h2 class="display-5 fw-bold text-gradient">Juknis <span class="color-span">Lomba</span></h2>
+        <p class="lead text-muted">Informasi penting terkait <strong>Sangatta Festival Run 2025</strong></p>
       </div>
 
-      <!-- Fasilitas -->
-      <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="100">
-        <h2 class="accordion-header" id="fasilitasHeading">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fasilitasCollapse">
-            <i class="bi bi-gift me-2"></i> Fasilitas
-          </button>
-        </h2>
-        <div id="fasilitasCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
-          <div class="accordion-body">
-            Setiap peserta akan mendapatkan kaos eksklusif Sangatta Festival Run 2025.
+      <div class="accordion" id="juknisAccordion">
+        <!-- Kategori -->
+        <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="50">
+          <h2 class="accordion-header" id="kategoriHeading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kategoriCollapse">
+              <i class="bi bi-tags me-2"></i> Kategori
+            </button>
+          </h2>
+          <div id="kategoriCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
+            <div class="accordion-body">
+              <ul>
+                <li>Umum: 2.000 kuota</li>
+                <li>Pelajar: 200 kuota</li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Pendaftaran -->
-      <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="150">
-        <h2 class="accordion-header" id="pendaftaranHeading">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pendaftaranCollapse">
-            <i class="bi bi-calendar2-week me-2"></i> Pendaftaran
-          </button>
-        </h2>
-        <div id="pendaftaranCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
-          <div class="accordion-body">
-            Pendaftaran dibuka dari <strong>1 Mei 2025</strong> hingga <strong>30 Mei 2025</strong>.
+        <!-- Fasilitas -->
+        <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="100">
+          <h2 class="accordion-header" id="fasilitasHeading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fasilitasCollapse">
+              <i class="bi bi-gift me-2"></i> Fasilitas
+            </button>
+          </h2>
+          <div id="fasilitasCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
+            <div class="accordion-body">
+              Setiap peserta akan mendapatkan kaos eksklusif Sangatta Festival Run 2025.
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Tahap Pendaftaran -->
-      <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="200">
-        <h2 class="accordion-header" id="tahapHeading">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tahapCollapse">
-            <i class="bi bi-clipboard-check me-2"></i> Tahap Pendaftaran
-          </button>
-        </h2>
-        <div id="tahapCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
-          <div class="accordion-body">
-            <div class="row g-4">
-              <div class="col-md-4 text-center">
-                <div class="icon-circle bg-primary text-white mb-3">
-                  <i class="bi bi-person-plus fs-3"></i>
+        <!-- Pendaftaran -->
+        <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="150">
+          <h2 class="accordion-header" id="pendaftaranHeading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pendaftaranCollapse">
+              <i class="bi bi-calendar2-week me-2"></i> Pendaftaran
+            </button>
+          </h2>
+          <div id="pendaftaranCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
+            <div class="accordion-body">
+              Pendaftaran dibuka dari <strong>1 Mei 2025</strong> hingga <strong>30 Mei 2025</strong>.
+            </div>
+          </div>
+        </div>
+
+        <!-- Tahap Pendaftaran -->
+        <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="200">
+          <h2 class="accordion-header" id="tahapHeading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tahapCollapse">
+              <i class="bi bi-clipboard-check me-2"></i> Tahap Pendaftaran
+            </button>
+          </h2>
+          <div id="tahapCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
+            <div class="accordion-body">
+              <div class="row g-4">
+                <div class="col-md-4 text-center">
+                  <div class="icon-circle bg-primary text-white mb-3">
+                    <i class="bi bi-person-plus fs-3"></i>
+                  </div>
+                  <h5 class="fw-semibold text-primary">1. Daftar Akun</h5>
+                  <p class="text-muted">Isi data diri dan unggah bukti pembayaran.</p>
                 </div>
-                <h5 class="fw-semibold text-primary">1. Daftar Akun</h5>
-                <p class="text-muted">Isi data diri dan unggah bukti pembayaran.</p>
-              </div>
-              <div class="col-md-4 text-center">
-                <div class="icon-circle bg-success text-white mb-3">
-                  <i class="bi bi-shield-check fs-3"></i>
+                <div class="col-md-4 text-center">
+                  <div class="icon-circle bg-success text-white mb-3">
+                    <i class="bi bi-shield-check fs-3"></i>
+                  </div>
+                  <h5 class="fw-semibold text-success">2. Verifikasi</h5>
+                  <p class="text-muted">Admin memverifikasi dalam 1x24 jam.</p>
                 </div>
-                <h5 class="fw-semibold text-success">2. Verifikasi</h5>
-                <p class="text-muted">Admin memverifikasi dalam 1x24 jam.</p>
-              </div>
-              <div class="col-md-4 text-center">
-                <div class="icon-circle bg-warning text-white mb-3">
-                  <i class="bi bi-envelope-paper fs-3"></i>
+                <div class="col-md-4 text-center">
+                  <div class="icon-circle bg-warning text-white mb-3">
+                    <i class="bi bi-envelope-paper fs-3"></i>
+                  </div>
+                  <h5 class="fw-semibold text-warning">3. Terima Tiket</h5>
+                  <p class="text-muted">Tiket dikirim ke email dalam bentuk QR Code.</p>
                 </div>
-                <h5 class="fw-semibold text-warning">3. Terima Tiket</h5>
-                <p class="text-muted">Tiket dikirim ke email dalam bentuk QR Code.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
-<!-- Footer -->
-<footer class="footer mt-5" data-aos="fade-up" data-aos-delay="100">
-  <div class="container text-center">
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <h5>Tentang Kami</h5>
-        <p>Panitia resmi lomba lari nasional 2025 yang berkomitmen menyelenggarakan event berkualitas, sehat, dan kompetitif.</p>
+  <!-- Footer -->
+  <footer class="footer mt-5" data-aos="fade-up" data-aos-delay="100">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h5>Tentang Kami</h5>
+          <p>Panitia resmi lomba lari nasional 2025 yang berkomitmen menyelenggarakan event berkualitas, sehat, dan kompetitif.</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5>Navigasi</h5>
+          <ul class="list-unstyled">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#tentang">Tentang</a></li>
+            <li><a href="#peserta">Peserta</a></li>
+            <li><a href="#juknis">Juknis</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5>Kontak</h5>
+          <p>Email: info@sfr2025.id</p>
+          <p>WhatsApp: 0812-3456-7890</p>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <h5>Navigasi</h5>
-        <ul class="list-unstyled">
-          <li><a href="#home">Beranda</a></li>
-          <li><a href="#tentang">Tentang</a></li>
-          <li><a href="#peserta">Peserta</a></li>
-          <li><a href="#juknis">Juknis</a></li>
-        </ul>
-      </div>
-      <div class="col-md-4 mb-3">
-        <h5>Kontak</h5>
-        <p>Email: info@sfr2025.id</p>
-        <p>WhatsApp: 0812-3456-7890</p>
-      </div>
+      <hr style="border-color: #ccff66;">
+      <p>&copy; 2025 Sangatta Festival Run. All rights reserved.</p>
     </div>
-    <hr style="border-color: #ccff66;">
-    <p>&copy; 2025 Sangatta Festival Run. All rights reserved.</p>
-  </div>
-</footer>
+  </footer>
 
-<!-- Script -->
-<!-- navbar scroll -->
-<script>
-  window.addEventListener('scroll', function () {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-      navbar.classList.add('navbar-scrolled');
-    } else {
-      navbar.classList.remove('navbar-scrolled');
-    }
-  });
-</script>
+  <!-- Script -->
+  <!-- navbar scroll -->
+  <script>
+    window.addEventListener('scroll', function () {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+      }
+    });
+  </script>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    <?php if (session()->getFlashdata('validation_errors')): ?>
-        let errorMessages = <?= json_encode(session()->getFlashdata('validation_errors')) ?>;
-        let combinedErrors = Object.values(errorMessages).join('<br>');
-        Swal.fire({
-            icon: 'error',
-            title: 'Validasi Gagal',
-            html: combinedErrors,
-            confirmButtonText: 'OK'
-        });
-    <?php elseif (session()->getFlashdata('error')): ?>
-        Swal.fire({
-            icon: 'error',
-            title: 'Gagal',
-            text: '<?= session()->getFlashdata('error') ?>'
-        });
-    <?php elseif (session()->getFlashdata('success')): ?>
-        Swal.fire({
-            icon: 'success',
-            title: 'Sukses',
-            text: '<?= session()->getFlashdata('success') ?>'
-        });
-    <?php endif; ?>
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+      <?php if (session()->getFlashdata('validation_errors')): ?>
+          let errorMessages = <?= json_encode(session()->getFlashdata('validation_errors')) ?>;
+          let combinedErrors = Object.values(errorMessages).join('<br>');
+          Swal.fire({
+              icon: 'error',
+              title: 'Validasi Gagal',
+              html: combinedErrors,
+              confirmButtonText: 'OK'
+          });
+      <?php elseif (session()->getFlashdata('error')): ?>
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: '<?= session()->getFlashdata('error') ?>'
+          });
+      <?php elseif (session()->getFlashdata('success')): ?>
+          Swal.fire({
+              icon: 'success',
+              title: 'Sukses',
+              text: '<?= session()->getFlashdata('success') ?>'
+          });
+      <?php endif; ?>
+  </script>
 </body>
 </html>

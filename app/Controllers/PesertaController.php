@@ -6,6 +6,16 @@ class PesertaController extends BaseController
 {
     public function index()
     {
-        return view('peserta/dashboard_peserta');
+        $id_peserta = session()->get('id_peserta');
+        if (!$id_peserta) {
+            return redirect()->to('/login');
+        }
+
+        $pesertaModel = new PesertaModel();
+        $peserta = $pesertaModel->find($id_peserta);
+
+        return view('peserta/dashboard_peserta', ['peserta' => $peserta]);
     }
+
+
 }
