@@ -25,3 +25,11 @@ $routes->get('AdminPesertaController/konfirmasi/(:num)', 'AdminPesertaController
 $routes->get('AdminPesertaController/tolak/(:num)', 'AdminPesertaController::tolak/$1');
 
 
+$routes->get('AdminPesertaController/kirimEmailTes', 'AdminPesertaController::kirimEmailTes');
+
+
+
+$routes->get('LaporanController/terkonfirmasi', 'LaporanController::terkonfirmasi');
+$routes->get('LaporanController/sudah-ambil-baju', 'LaporanController::laporanSudahAmbilBaju');
+
+

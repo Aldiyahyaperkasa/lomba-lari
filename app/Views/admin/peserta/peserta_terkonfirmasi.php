@@ -2,10 +2,13 @@
 <?= $this->section('content'); ?>
 
 <div class="col-12">
-  <div class="card shadow border-0">
+  <div class="card" style="border-top: 5px solid #0095D9;">
     <div class="card-body">
-      <h5 class="card-title text-dark">Peserta Mendaftar (Menunggu Konfirmasi)</h5>
-
+      <h5 class="card-title" style="color: #003366;">
+        <i class="bi bi-people-fill me-2" style="color: #0095D9;"></i>
+        Peserta Terkonfirmasi
+      </h5>
+      
       <!-- Form Filter Kategori Lari -->
       <form method="get" action="<?= base_url('AdminPesertaController/terkonfirmasi'); ?>" class="mb-3">
         <div class="row">
@@ -44,6 +47,7 @@
               <th>Riwayat Penyakit</th>
               <th>Bukti Bayar</th>
               <th>Status</th>
+              <th>Nomor Peserta</th>
               <th>Tanggal Daftar</th>
             </tr>
           </thead>
@@ -76,8 +80,9 @@
                     <?php endif; ?>
                   </td>
                   <td class="text-center">
-                    <span class="badge bg-warning text-dark"><?= esc($p['status_pendaftaran']); ?></span>
+                    <span class="badge bg-success"><?= esc($p['status_pendaftaran']); ?></span>
                   </td>
+                  <td><?= esc($p['nomor_peserta']) ?: '-'; ?></td>
                   <td><?= date('d-m-Y H:i', strtotime($p['tanggal_daftar'])); ?></td>
                 </tr>
               <?php endforeach; ?>

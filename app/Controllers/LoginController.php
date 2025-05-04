@@ -48,6 +48,7 @@ class LoginController extends BaseController
                     'role' => 'admin',
                     'logged_in' => true
                 ]);
+                $session->setFlashdata('success', 'Berhasil login sebagai admin');
                 return redirect()->to('/AdminController/index');
             } else {
                 return redirect()->back()->with('error', 'Password salah');

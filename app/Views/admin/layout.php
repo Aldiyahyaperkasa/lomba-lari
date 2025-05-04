@@ -138,22 +138,22 @@
             data-bs-parent="#sidebar-nav"
           >
             <li>
-              <a href="../kelas/tampil_kelas.php">
+              <a href="<?= base_url('LaporanController/terkonfirmasi') ?>">
                 <i class="bi bi-circle text-light"></i><span class="text-light">Peserta Terkonfirmasi</span>
               </a>
             </li>                       
             <li>
-              <a href="../kelas/tampil_kelas.php">
+              <a href="<?= base_url('LaporanController/sudah-ambil-baju') ?>">
                 <i class="bi bi-circle text-light"></i><span class="text-light">Sudah Ambil Baju</span>
               </a>
-            </li>                       
+            </li>                        
           </ul>
         </li>
 
         <li class="nav-heading text-light">sistem</li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" style="background-color:#003366;" href="../login.php">
+          <a class="nav-link collapsed" style="background-color:#003366;" href="<?= base_url('LoginController/logout') ?>">
             <i class="bi bi-box-arrow-in-right text-light"></i>
             <span class="text-light">logout</span>
           </a>
