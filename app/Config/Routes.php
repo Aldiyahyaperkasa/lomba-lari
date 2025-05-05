@@ -25,11 +25,13 @@ $routes->get('AdminPesertaController/konfirmasi/(:num)', 'AdminPesertaController
 $routes->get('AdminPesertaController/tolak/(:num)', 'AdminPesertaController::tolak/$1');
 
 
-$routes->get('AdminPesertaController/kirimEmailTes', 'AdminPesertaController::kirimEmailTes');
+// $routes->get('AdminPesertaController/kirimEmailTes', 'AdminPesertaController::kirimEmailTes');
 
 
 
 $routes->get('LaporanController/terkonfirmasi', 'LaporanController::terkonfirmasi');
-$routes->get('LaporanController/sudah-ambil-baju', 'LaporanController::laporanSudahAmbilBaju');
+$routes->get('LaporanController/sudahAmbilBaju', 'LaporanController::sudahAmbilBaju');
+$routes->get('LaporanController/exportPesertaTerkonfirmasiExcel', 'LaporanController::exportPesertaTerkonfirmasiExcel');
+$routes->get('LaporanController/exportSudahAmbilBajuExcel', 'LaporanController::exportSudahAmbilBajuExcel');
 
 

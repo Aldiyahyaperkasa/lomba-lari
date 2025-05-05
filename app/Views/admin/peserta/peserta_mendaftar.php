@@ -82,8 +82,6 @@
                   <td><?= date('d-m-Y H:i', strtotime($p['tanggal_daftar'])); ?></td>
                   <td class="text-center">
                     <a href="<?= base_url('AdminPesertaController/konfirmasi/' . $p['id_peserta']); ?>" class="btn btn-success btn-sm">Konfirmasi</a>
-
-<a href="<?= base_url('AdminPesertaController/kirimEmailTes') ?>" class="btn btn-primary">Kirim Email Tes</a>
                     <a href="<?= base_url('AdminPesertaController/tolak/' . $p['id_peserta']); ?>" class="btn btn-danger btn-sm">Tolak</a>
                   </td>
                 </tr>

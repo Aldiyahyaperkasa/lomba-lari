@@ -143,7 +143,7 @@
               </a>
             </li>                       
             <li>
-              <a href="<?= base_url('LaporanController/sudah-ambil-baju') ?>">
+              <a href="<?= base_url('LaporanController/sudahAmbilBaju') ?>">
                 <i class="bi bi-circle text-light"></i><span class="text-light">Sudah Ambil Baju</span>
               </a>
             </li>                        

@@ -175,16 +175,16 @@ public function sendEmailTiket($peserta, $qrRelativePath, $tiketRelativePath)
         $qrUrl = base_url($qrRelativePath);
         $tiketUrl = base_url($tiketRelativePath); // Path tiket untuk email
 
-$mail->Body = 'Halo ' . esc($peserta['nama_peserta']) . ',<br><br>' .
-    'Terima kasih telah mendaftar untuk event lari. Berikut adalah tiket Anda:<br>' .
-    'Nomor Peserta: ' . esc($peserta['nomor_peserta']) . '<br>' .
-    'Kategori Lari: ' . esc($peserta['kategori_lari']) . '<br>' .
-    'Ukuran Baju: ' . esc($peserta['ukuran_baju']) . '<br><br>' .
-    'Berikut adalah QR Code Anda:<br>' .
-    '<img src="' . base_url($qrRelativePath) . '" alt="QR Code" style="max-width:200px;"><br>' .
-    'Silakan membawa QR Code saat mengambil nomor peserta dan baju.<br><br>' .
-    'Berikut juga terlampir tiket Anda.<br><br>' .
-    'Terima kasih.';
+        $mail->Body = 'Halo ' . esc($peserta['nama_peserta']) . ',<br><br>' .
+            'Terima kasih telah mendaftar untuk event lari. Berikut adalah tiket Anda:<br>' .
+            'Nomor Peserta: ' . esc($peserta['nomor_peserta']) . '<br>' .
+            'Kategori Lari: ' . esc($peserta['kategori_lari']) . '<br>' .
+            'Ukuran Baju: ' . esc($peserta['ukuran_baju']) . '<br><br>' .
+            'Berikut adalah QR Code Anda:<br>' .
+            '<img src="' . base_url($qrRelativePath) . '" alt="QR Code" style="max-width:200px;"><br>' .
+            'Silakan membawa QR Code saat mengambil nomor peserta dan baju.<br><br>' .
+            'Berikut juga terlampir tiket Anda.<br><br>' .
+            'Terima kasih.';
 
 
         // Lampirkan QR code
