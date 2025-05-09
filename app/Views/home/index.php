@@ -246,36 +246,39 @@
   </section>
 
   <!-- Peserta -->
-  <section id="peserta" class="bg-white">
+  <section id="peserta" class="bg-white py-5">
     <div class="container">
-      <h2 class="text-center mb-4 display-5 fw-bold" style="color:#007bff;" data-aos="fade-down">Peserta <span class="color-span">Terkonfirmasi</span></h2>
-      <div class="table-responsive" data-aos="fade-up" data-aos-delay="200">
-        <table class="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th class="text-light">No</th>
-              <th class="text-light">Nama</th>
-              <th class="text-light">Asal</th>
-              <th class="text-light">Nomor HP</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php if (!empty($peserta)) : ?>
-              <?php $no = 1; foreach ($peserta as $row) : ?>
-                <tr>
-                  <td><?= $no++ ?></td>
-                  <td><?= esc($row['nama']) ?></td>
-                  <td><?= esc($row['asal']) ?></td>
-                  <td><?= esc($row['no_hp']) ?></td>
-                </tr>
-              <?php endforeach; ?>
-            <?php else : ?>
-              <tr>
-                <td colspan="4" class="text-center">Belum ada peserta terkonfirmasi.</td>
-              </tr>
-            <?php endif; ?>
-          </tbody>
-        </table>
+      <h2 class="text-center mb-4 display-5 fw-bold" style="color:#007bff;" data-aos="fade-down">
+        Peserta <span class="color-span">Terkonfirmasi</span>
+      </h2>
+
+      <!-- Tabs -->
+      <ul class="nav nav-tabs mb-3" id="kategoriTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="umum-tab" data-bs-toggle="tab" data-bs-target="#umum" type="button" role="tab">Kategori Umum</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pelajar-tab" data-bs-toggle="tab" data-bs-target="#pelajar" type="button" role="tab">Kategori Pelajar</button>
+        </li>
+      </ul>
+
+      <!-- Tab Content -->
+      <div class="tab-content" id="kategoriTabsContent">
+        <!-- Kategori Umum -->
+        <div class="tab-pane fade show active" id="umum" role="tabpanel" aria-labelledby="umum-tab">
+          <?= view('home/partials_peserta_table', ['peserta' => $umum]) ?>
+          <div class="text-center mt-3">
+            <a href="<?= site_url('home/semuaPeserta?kategori=Umum') ?>" class="btn btn-primary">Lihat Lainnya</a>
+          </div>
+        </div>
+
+        <!-- Kategori Pelajar -->
+        <div class="tab-pane fade" id="pelajar" role="tabpanel" aria-labelledby="pelajar-tab">
+          <?= view('home/partials_peserta_table', ['peserta' => $pelajar]) ?>
+          <div class="text-center mt-3">
+            <a href="<?= site_url('home/semuaPeserta?kategori=Pelajar') ?>" class="btn btn-primary">Lihat Lainnya</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -375,7 +378,7 @@
 
 
   <!-- Footer -->
-  <footer class="footer mt-5" data-aos="fade-up" data-aos-delay="100">
+  <footer class="footer">
     <div class="container text-center">
       <div class="row">
         <div class="col-md-4 mb-3">

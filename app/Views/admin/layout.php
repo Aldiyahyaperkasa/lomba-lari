@@ -108,15 +108,15 @@
             data-bs-parent="#sidebar-nav"
           >
             <li>
-              <a href="../kelas/tampil_kelas.php">
+              <a href="<?= base_url('admin/pengambilan/scan') ?>">
                 <i class="bi bi-circle text-light"></i><span class="text-light">Scan Kode QR</span>
               </a>
             </li>                       
             <li>
-              <a href="../kelas/tampil_kelas.php">
+              <a href="<?= base_url('admin/pengambilan/manual') ?>">
                 <i class="bi bi-circle text-light"></i><span class="text-light">Manual</span>
               </a>
-            </li>                       
+            </li>                        
           </ul>
         </li>
 

@@ -6,7 +6,9 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+$routes->get('/home/semuaPeserta', 'Home::semuaPeserta');
 $routes->get('/LoginController', 'LoginController::index');
+
 
 $routes->get('PendaftaranController/getKuotaSemua', 'PendaftaranController::getKuotaSemua');
 $routes->post('PendaftaranController/store', 'PendaftaranController::store');
@@ -35,3 +37,7 @@ $routes->get('LaporanController/exportPesertaTerkonfirmasiExcel', 'LaporanContro
 $routes->get('LaporanController/exportSudahAmbilBajuExcel', 'LaporanController::exportSudahAmbilBajuExcel');
 
 
+$routes->get('admin/pengambilan/scan', 'PengambilanBajuController::scan');
+$routes->post('admin/pengambilan/scan', 'PengambilanBajuController::prosesScan');
+$routes->get('admin/pengambilan/manual', 'PengambilanBajuController::manual');
+$routes->post('admin/pengambilan/update/(:num)', 'PengambilanBajuController::updateManual/$1');

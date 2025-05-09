@@ -228,6 +228,13 @@
                                   </span>
                                 </p>
                             </div>
+                            <div class="col-md-12 mt-3">
+                                <p class="mb-1 fw-semibold">Nomor Peserta :
+                                    <span class="badge p-2 bg-<?= $peserta['status_pendaftaran'] === 'Terkonfirmasi' ? 'success' : ($peserta['status_pendaftaran'] === 'Ditolak' ? 'danger' : 'warning'); ?>">
+                                        <?= $peserta['status_pendaftaran'] === 'Terkonfirmasi' ? $peserta['nomor_peserta'] : '-'; ?>
+                                    </span>
+                                </p>
+                            </div>
                             <hr>                          
                             <div class="col-md-6">
                                 <p class="mb-1 fw-semibold">Nama Lengkap</p>
@@ -292,7 +299,7 @@
                         </div>
 
                         <div class="mt-4 text-end">
-                            <a href="<?= base_url('logout'); ?>" class="btn btn-outline-danger rounded-pill">Logout</a>
+                            <a href="<?= base_url('LoginController/logout'); ?>" class="btn btn-outline-danger rounded-pill">Logout</a>
                         </div>
                     </div>
                 </div>

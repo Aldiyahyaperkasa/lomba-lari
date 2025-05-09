@@ -123,6 +123,8 @@ public function konfirmasi($id)
         $this->pesertaModel->update($id, ['status_pendaftaran' => 'Terkonfirmasi']);
     }
 
+    $peserta['kode_qr'] = $kodeQR;
+
     // 5. Generate tiket gambar
     $tiketOutputPath = 'tiket/tiket_' . $peserta['nomor_peserta'] . '.png';
     TiketImageGenerator::generate($peserta, FCPATH . $qrPath, FCPATH . $tiketOutputPath);

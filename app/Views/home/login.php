@@ -260,11 +260,11 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="password" class="form-label">Password</label>
-                                            <input type="password" class="form-control rounded-pill" id="password" name="password" value="<?= old('password') ?>" required>
+                                            <input type="password" class="form-control rounded-pill" id="password" name="password" value="<?= old('password') ?>" placeholder="min 6 gabungan huruf & angka" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="namaPeserta" class="form-label">Nama Lengkap</label>
-                                            <input type="text" class="form-control rounded-pill" id="namaPeserta" name="nama_peserta" value="<?= old('nama_peserta') ?>" required>
+                                            <input type="text" class="form-control rounded-pill" id="namaPeserta" name="nama_peserta" value="<?= old('nama_peserta') ?>"  required>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
@@ -272,7 +272,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="noTelepon" class="form-label">Nomor Telepon</label>
-                                            <input type="text" class="form-control rounded-pill" id="noTelepon" name="no_telepon" value="<?= old('no_telepon') ?>" required>
+                                            <input type="text" class="form-control rounded-pill" id="noTelepon" name="no_telepon" value="<?= old('no_telepon') ?>" placeholder="min 11 | max 13 angka" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="alamat" class="form-label">Alamat</label>
@@ -280,7 +280,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="nik" class="form-label">NIK</label>
-                                            <input type="text" class="form-control rounded-pill" id="nik" name="nik" value="<?= old('nik') ?>" required>
+                                            <input type="text" class="form-control rounded-pill" id="nik" name="nik" value="<?= old('nik') ?>" placeholder="wajib 16 angka" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="email" class="form-label">Email</label>
@@ -309,7 +309,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="noDarurat1" class="form-label">Nomor Telepon Darurat 1</label>
-                                            <input type="text" class="form-control rounded-pill" id="noDarurat1" name="no_telepon_darurat_1" value="<?= old('no_telepon_darurat_1') ?>" required>
+                                            <input type="text" class="form-control rounded-pill" id="noDarurat1" name="no_telepon_darurat_1" value="<?= old('no_telepon_darurat_1') ?>">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="noDarurat2" class="form-label">Nomor Telepon Darurat 2</label>
