@@ -69,7 +69,7 @@
         }
 
         .hero {
-            background: url("<?= base_url('assets/gambar/maskot-withbg.jpeg') ?>") center center / cover no-repeat;
+            background: url("<?= base_url('assets/gambar/banner-memanjang.png') ?>") center center / cover no-repeat;
             color: white;
             min-height: 100vh;
             display: flex;
@@ -85,8 +85,8 @@
             top: 0; left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom right, #001F3F, #003366);
-            /* background: rgba(0, 31, 63, 0.6); */
+            /* background: linear-gradient(to bottom right, #001F3F, #003366); */
+            background: rgba(0, 0, 0, 0.7);
         }
 
         .hero .container {
@@ -178,20 +178,35 @@
         .bg-warning { background-color: #FFD700 !important; }
 
 
-        footer {
-            background: #FFD700;
-            color: #003366;
-            padding: 20px 0;
+        .footer-banner {
+          background: url('<?= base_url('assets/gambar/banner-memanjang.png') ?>') no-repeat center center;
+          background-size: cover;
+          position: relative;
+          color: white;
+        }
+
+        .footer-banner::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-color: rgba(0, 0, 0, 0.8); /* overlay gelap */
+          z-index: 1;
+        }
+
+        .footer-banner .footer-content {
+          position: relative;
+          z-index: 2;
         }
 
         footer a {
-            color: #003366;
+            color: #fff;
             text-decoration: none;
         }
 
         footer a:hover {
             text-decoration: underline;
         }
+
     </style>
 </head>
 <body>
@@ -224,8 +239,8 @@
   <!-- Hero -->
   <section class="hero" id="home">
     <div class="container" >
-      <h1 data-aos="fade-left">Gabung dan Rasakan Sensasi Berlari di Sangatta Festival Run 2025!</h1>
-      <p data-aos="fade-right">Acara lari terbesar di Sangatta dengan kategori Umum & Pelajar</p>
+      <h1 data-aos="fade-left">Ayo rasakan dan meriahkan sensasi berlari di Sangatta Festival Run 2025</h1>
+      <p data-aos="fade-right">Salah satu event fun run terbesar di sangatta yang banyak menghadirkan konsep yang berbeda</p>
       <a href="#juknis" class="btn btn-cta mt-3" data-aos="fade-up">Informasi Detail</a>
     </div>
   </section>
@@ -238,8 +253,8 @@
           <img src="<?= base_url() ?>assets/gambar/maskot.png" alt="Lomba" class="img-fluid rounded w-50">
         </div>
         <div class="col-md-6 mt-4 mt-md-0" data-aos="">
-          <h2 class="display-5 fw-bold" style="color:#007bff;">Tentang <span class="color-span">Lomba</span></h2>
-          <p>Lomba Lari Nasional 2025 terbuka untuk seluruh masyarakat Indonesia. Jalur menantang, hadiah besar, dan pengalaman tak terlupakan menanti Anda. Yuk gabung dan jadi bagian dari sejarah lomba lari terbesar tahun ini!</p>
+          <h2 class="display-5 fw-bold" style="color:#007bff;">Tentang Sangatta <span class="color-span">Festival Run</span></h2>
+          <p>Salah satu event fun run terbesar yang di adakan di kota sangatta di tahun 2025, yang di buka untuk seluruh masyarakat kalimantan timur. Dengan jalur yang menantang dengan pengalaman yang tak terlupakan. Sangatta festival run 2025 banyak menghadirkan konsep yang berbeda dan pastinya seru untuk di ikuti para pecinta lari untuk merasakan sensasi lari dengan penuh warna.</p>
         </div>
       </div>
     </div>
@@ -284,7 +299,7 @@
   </section>
 
   <!-- Juknis -->
-  <section class="py-5 text-dark" id="juknis">
+  <section class="py-5 text-dark mb-5" id="juknis">
     <div class="container">
       <div class="text-center mb-4" data-aos="fade-up">
         <h2 class="display-5 fw-bold text-gradient">Juknis <span class="color-span">Lomba</span></h2>
@@ -308,17 +323,22 @@
             </div>
           </div>
         </div>
-
-        <!-- Fasilitas -->
-        <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="100">
-          <h2 class="accordion-header" id="fasilitasHeading">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fasilitasCollapse">
-              <i class="bi bi-gift me-2"></i> Fasilitas
+        <!-- Pembayaran -->
+        <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="250">
+          <h2 class="accordion-header" id="pembayaranHeading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pembayaranCollapse">
+              <i class="bi bi-wallet2 me-2"></i> Pembayaran
             </button>
           </h2>
-          <div id="fasilitasCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
+          <div id="pembayaranCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
             <div class="accordion-body">
-              Setiap peserta akan mendapatkan kaos eksklusif Sangatta Festival Run 2025.
+              <p>Silakan lakukan pembayaran ke salah satu rekening atau e-wallet berikut:</p>
+              <ul class="mb-3">
+                <li><strong>BRI:</strong> 056301069405502 a.n. <strong>Mayasari</strong></li>
+                <li><strong>BCA:</strong> 7995030829 a.n. <strong>Mayasari</strong></li>
+                <li><strong>Dana:</strong> 082259419842</li>
+              </ul>
+              <p>Pastikan untuk menyimpan bukti pembayaran dan unggah saat melakukan pendaftaran.</p>
             </div>
           </div>
         </div>
@@ -332,7 +352,21 @@
           </h2>
           <div id="pendaftaranCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
             <div class="accordion-body">
-              Pendaftaran dibuka dari <strong>1 Mei 2025</strong> hingga <strong>30 Mei 2025</strong>.
+              Pendaftaran dibuka dari <strong>14 Mei 2025</strong> hingga <strong>02 Juni 2025</strong>.
+            </div>
+          </div>
+        </div>
+                
+        <!-- Fasilitas -->
+        <div class="accordion-item juknis-card mb-3" data-aos="fade-up" data-aos-delay="100">
+          <h2 class="accordion-header" id="fasilitasHeading">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fasilitasCollapse">
+              <i class="bi bi-gift me-2"></i> Fasilitas
+            </button>
+          </h2>
+          <div id="fasilitasCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
+            <div class="accordion-body">
+              Setiap peserta akan mendapatkan kaos eksklusif Sangatta Festival Run 2025.
             </div>
           </div>
         </div>
@@ -378,32 +412,47 @@
 
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <h5>Tentang Kami</h5>
-          <p>Panitia resmi lomba lari nasional 2025 yang berkomitmen menyelenggarakan event berkualitas, sehat, dan kompetitif.</p>
+  <footer class="footer-banner pt-5 pb-3 mt-5 mb-5">
+    <div class="container footer-content">
+      <div class="row text-center text-md-start">
+        
+        <!-- Logo & Deskripsi -->
+        <div class="col-md-4 mb-4">
+          <h4 class="fw-bold">Sangatta Festival Run 2025</h4>
+          <p class="small mt-2">Salah satu event fun run terbesar yang di adakan di kota sangatta di tahun 2025, yang di buka untuk seluruh masyarakat kalimantan timur. Dengan jalur yang menantang dengan pengalaman yang tak terlupakan. Sangatta festival run 2025 banyak menghadirkan konsep yang berbeda dan pastinya seru untuk di ikuti para pecinta lari untuk merasakan sensasi lari dengan penuh warna</p>
+          <p class="small">Tanggal: <strong>22 Juni 2025</strong></p>
         </div>
-        <div class="col-md-4 mb-3">
-          <h5>Navigasi</h5>
-          <ul class="list-unstyled">
-            <li><a href="#home">Beranda</a></li>
-            <li><a href="#tentang">Tentang</a></li>
-            <li><a href="#peserta">Peserta</a></li>
-            <li><a href="#juknis">Juknis</a></li>
+
+        <!-- Navigasi -->
+        <div class="col-md-4 mb-4 text-center">
+          <h5 class="fw-semibold">Navigasi</h5>
+          <ul class="list-unstyled mt-3">
+            <li><a href="#home" class="text-white text-decoration-none d-block mb-1">Beranda</a></li>
+            <li><a href="#tentang" class="text-white text-decoration-none d-block mb-1">Informasi Lomba</a></li>
+            <li><a href="#peserta" class="text-white text-decoration-none d-block mb-1">peserta lomba</a></li>
+            <li><a href="#juknis" class="text-white text-decoration-none d-block">juknis</a></li>
           </ul>
         </div>
-        <div class="col-md-4 mb-3">
-          <h5>Kontak</h5>
-          <p>Email: info@sfr2025.id</p>
-          <p>WhatsApp: 0812-3456-7890</p>
+
+        <!-- Sosial Media & Kontak -->
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-semibold">Ikuti Kami</h5>
+          <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-3">
+            <a href="#"><i class="bi bi-instagram text-white fs-5"></i></a>
+            <a href="#"><i class="bi bi-facebook text-white fs-5"></i></a>
+            <a href="#"><i class="bi bi-youtube text-white fs-5"></i></a>
+          </div>
+          <p class="small mt-3 mb-1">Email: <a href="mailto:info@sfr2025.com" class="text-white">info@sfr2025.com</a></p>
+          <p class="small">Telepon: <a href="tel:+6281234567890" class="text-white">+62 812-3456-7890</a></p>
         </div>
+
       </div>
-      <hr style="border-color: #ccff66;">
-      <p>&copy; 2025 Sangatta Festival Run. All rights reserved.</p>
+
+      <hr class="border-light" />
+      <!-- <p class="text-center small mb-0">&copy; 2025 Sangatta Festival Run.</p> -->
     </div>
   </footer>
+
 
   <!-- Script -->
   <!-- navbar scroll -->

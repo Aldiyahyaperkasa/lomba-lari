@@ -113,14 +113,28 @@
             color: #fff;
         }
     
-        footer {
-            background: #FFD700;
-            color: #003366;
-            padding: 20px 0;
+        .footer-banner {
+          background: url('<?= base_url('assets/gambar/banner-memanjang.png') ?>') no-repeat center center;
+          background-size: cover;
+          position: relative;
+          color: white;
+        }
+
+        .footer-banner::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-color: rgba(0, 0, 0, 0.8); /* overlay gelap */
+          z-index: 1;
+        }
+
+        .footer-banner .footer-content {
+          position: relative;
+          z-index: 2;
         }
 
         footer a {
-            color: #003366;
+            color: #fff;
             text-decoration: none;
         }
 
@@ -207,31 +221,45 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer mt-5">
-    <div class="container text-center">
-        <div class="row">
-        <div class="col-md-4 mb-3">
-            <h5>Tentang Kami</h5>
-            <p>Panitia resmi lomba lari nasional 2025 yang berkomitmen menyelenggarakan event berkualitas, sehat, dan kompetitif.</p>
-        </div>
-        <div class="col-md-4 mb-3">
-            <h5>Navigasi</h5>
-            <ul class="list-unstyled">
-            <li><a href="#home">Beranda</a></li>
-            <li><a href="#tentang">Tentang</a></li>
-            <li><a href="#peserta">Peserta</a></li>
-            <li><a href="#juknis">Juknis</a></li>
+    <footer class="footer-banner pt-5 pb-3 mt-5 mb-5">
+        <div class="container footer-content">
+        <div class="row text-center text-md-start">
+            
+            <!-- Logo & Deskripsi -->
+            <div class="col-md-4 mb-4">
+            <h4 class="fw-bold">Sangatta Festival Run 2025</h4>
+            <p class="small mt-2">Berlari bersama merayakan semangat sehat dan kebersamaan di Sangatta!</p>
+            <p class="small">Tanggal: <strong>22 Juni 2025</strong></p>
+            </div>
+
+            <!-- Navigasi -->
+            <div class="col-md-4 mb-4">
+            <h5 class="fw-semibold">Navigasi</h5>
+            <ul class="list-unstyled mt-3">
+                <li><a href="<?= base_url('/'); ?>" class="text-white text-decoration-none d-block mb-1">Beranda</a></li>
+                <li><a href="<?= base_url('/'); ?>/#tentang" class="text-white text-decoration-none d-block mb-1">Informasi Lomba</a></li>
+                <li><a href="<?= base_url('/'); ?>/#peserta" class="text-white text-decoration-none d-block mb-1">peserta lomba</a></li>
+                <li><a href="<?= base_url('/'); ?>#juknis" class="text-white text-decoration-none d-block">juknis</a></li>
             </ul>
+            </div>
+
+            <!-- Sosial Media & Kontak -->
+            <div class="col-md-4 mb-4">
+            <h5 class="fw-semibold">Ikuti Kami</h5>
+            <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-3">
+                <a href="#"><i class="bi bi-instagram text-white fs-5"></i></a>
+                <a href="#"><i class="bi bi-facebook text-white fs-5"></i></a>
+                <a href="#"><i class="bi bi-youtube text-white fs-5"></i></a>
+            </div>
+            <p class="small mt-3 mb-1">Email: <a href="mailto:info@sfr2025.com" class="text-white">info@sfr2025.com</a></p>
+            <p class="small">Telepon: <a href="tel:+6281234567890" class="text-white">+62 812-3456-7890</a></p>
+            </div>
+
         </div>
-        <div class="col-md-4 mb-3">
-            <h5>Kontak</h5>
-            <p>Email: info@sfr2025.id</p>
-            <p>WhatsApp: 0812-3456-7890</p>
+
+        <hr class="border-light" />
+        <p class="text-center small mb-0">&copy; 2025 Sangatta Festival Run. All rights reserved.</p>
         </div>
-        </div>
-        <hr style="border-color: #ccff66;">
-        <p>&copy; 2025 Sangatta Festival Run. All rights reserved.</p>
-    </div>
     </footer>
 
 
