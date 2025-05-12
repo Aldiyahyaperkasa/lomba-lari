@@ -39,7 +39,12 @@ class PesertaController extends BaseController
         $dompdf->loadHtml($html);
 
         // (Optional) Set paper size
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'potrait');
+         $dompdf->set_option('isHtml5ParserEnabled', true); // Mengaktifkan HTML5 Parser
+        $dompdf->set_option('isPhpEnabled', true); // Mengaktifkan PHP jika diperlukan
+        $dompdf->render();
+        $dompdf->render();
+        
 
         // Render PDF (first pass)
         $dompdf->render();

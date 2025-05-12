@@ -365,7 +365,7 @@
               <ul class="mb-3">
                 <li><strong>BRI:</strong> 056301069405502 a.n. <strong>Mayasari</strong></li>
                 <li><strong>BCA:</strong> 7995030829 a.n. <strong>Mayasari</strong></li>
-                <li><strong>Dana:</strong> 082259419842</li>
+                <li><strong>Dana:</strong> 082259419842 a.n <strong>Mayasari</strong></li>
               </ul>
               <p>Pastikan untuk menyimpan bukti pembayaran dan unggah saat melakukan pendaftaran.</p>
             </div>

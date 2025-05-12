@@ -1,3 +1,12 @@
+<?php
+// Cek apakah banner tersedia
+$bannerBase64 = '';
+$bannerPath = FCPATH . 'assets/gambar/banner-memanjang.png'; // Menentukan path absolut
+if (file_exists($bannerPath)) {
+    $bannerBase64 = base64_encode(file_get_contents($bannerPath));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -5,86 +14,110 @@
     <title>Tiket Peserta</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
         }
 
         .ticket {
-            width: 800px;
-            margin: 40px auto;
+            width: 100%;
             background: #fff;
-            border: 4px dashed #333;
-            padding: 30px;
+            border: 2px solid #003366;
+            padding: 20px;
             position: relative;
+            max-width: 210mm;
+            max-height: 297mm;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
 
         .header {
             text-align: center;
-            border-bottom: 2px solid #000;
+            height: 80mm;
+            background-image: url("data:image/png;base64,<?= $bannerBase64 ?>");
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
             padding-bottom: 10px;
-            margin-bottom: 20px;
         }
 
         .header h1 {
             margin: 0;
             font-size: 28px;
-            color: #d32f2f;
+            color: #f72585;
         }
 
         .header p {
             font-size: 16px;
-            color: #555;
-        }
-
-        .info {
-            margin: 10px 0;
-            font-size: 16px;
-        }
-
-        .label {
-            font-weight: bold;
-            display: inline-block;
-            width: 160px;
-        }
-
-        .highlight {
-            font-size: 18px;
-            color: #2e7d32;
-        }
-
-        .main-info {
-            background-color: #e3f2fd;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            color: #fff;
         }
 
         .qr-code {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
             text-align: center;
+            margin-top: 20px;
         }
 
         .qr-code img {
-            height: 140px;
-            border: 2px solid #000;
+            width: 220px;
+            height: 220px;
+            border: 4px solid #003366;
             padding: 4px;
             background: #fff;
         }
 
         .qr-text {
-            margin-top: 8px;
+            font-size: 16px;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+            color: #003366;
+        }
+
+        .nama-peserta {
+            font-size: 30px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #f72585;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+
+        .info {
+            margin: 10px 0;
             font-size: 14px;
-            word-break: break-word;
+            color: #003366;
+        }
+
+        .label {
+            font-weight: bold;
+            display: inline-block;
+            width: 140px;
+            color: #0095D9;
+        }
+
+        .highlight {
+            font-size: 16px;
+            color: #f72585;
         }
 
         .note {
             margin-top: 30px;
-            font-size: 14px;
-            color: #777;
+            font-size: 12px;
+            color: #FFD700;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 10px;
+            color: #003366;
             font-style: italic;
         }
     </style>
@@ -92,16 +125,7 @@
 <body>
     <div class="ticket">
         <div class="header">
-            <h1>TIKET PESERTA LOMBA LARI</h1>
-            <p>Sangatta Festival Run 2025</p>
-        </div>
 
-        <div class="main-info">
-            <div class="info"><span class="label">Status Pendaftaran:</span> <span class="highlight"><?= $peserta['status_pendaftaran']; ?></span></div>
-            <div class="info"><span class="label">Nomor Peserta:</span> <strong><?= $peserta['nomor_peserta']; ?></strong></div>
-            <div class="info"><span class="label">Nama Peserta:</span> <?= $peserta['nama_peserta']; ?></div>
-            <div class="info"><span class="label">Ukuran Baju:</span> <?= $peserta['ukuran_baju']; ?></div>
-            <div class="info"><span class="label">NIK:</span> <?= $peserta['nik']; ?></div>
         </div>
 
         <div class="qr-code">
@@ -117,8 +141,20 @@
             ?>
         </div>
 
+        <div class="nama-peserta"><?= $peserta['nama_peserta']; ?></div>
+        <hr>
+        <div class="info"><span class="label">Nomor Peserta:</span> <strong class="highlight"><?= $peserta['nomor_peserta']; ?></strong></div>
+        <div class="info"><span class="label">NIK:</span> <?= $peserta['nik']; ?></div>
+        <div class="info"><span class="label">Alamat:</span> <?= $peserta['alamat']; ?></div>
+        <div class="info"><span class="label">Ukuran Baju:</span> <?= $peserta['ukuran_baju']; ?></div>
+        <div class="info"><span class="label">Riwayat Penyakit:</span> <?= $peserta['riwayat_penyakit']; ?></div>
+
         <div class="note">
             Harap membawa tiket ini saat pengambilan nomor dan baju peserta.
+        </div>
+
+        <div class="footer">
+            Sangatta Festival Run 2025 - All Rights Reserved
         </div>
     </div>
 </body>

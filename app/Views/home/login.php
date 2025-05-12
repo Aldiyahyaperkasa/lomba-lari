@@ -338,7 +338,39 @@
                                             <input type="file" class="form-control rounded-pill" id="buktiBayar" name="bukti_pembayaran" required>
                                         </div>
                                     </div>
+                                    <!-- Display Biaya Registrasi dan Informasi Pembayaran dalam Satu Card -->
+                                    <div class="mt-3 d-flex justify-content-center">
+                                        <div class="col-md-10">
+                                            <div class="p-4 border rounded bg-light shadow-lg">
+                                                <div class="row">
+                                                    <!-- Sisi Kiri - Kategori dan Biaya Registrasi -->
+                                                    <div class="col-md-6">
+                                                        <div class="d-flex align-items-center mb-3">
+                                                            <div class="text-dark me-3">
+                                                                <i class="bi bi-people-fill fs-4"></i>
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="mb-0 text-primary">Kategori Lari</h5>
+                                                            </div>
+                                                        </div>
+                                                        <p class="mb-1 text-muted">Kategori: <strong id="kategoriLabel">Umum</strong></p>
+                                                        <p class="mb-0 text-muted">Kuota: <strong id="kuotaLabel">2.000 peserta</strong></p>
+                                                        <p class="mb-0 text-muted">Biaya Registrasi: <span id="biayaLabel" class="fw-bold text-primary">Rp 180.000</span></p>
+                                                    </div>
 
+                                                    <!-- Sisi Kanan - Informasi Pembayaran -->
+                                                    <div class="col-md-6">
+                                                        <h6 class="text-dark mb-3">Silakan lakukan pembayaran ke salah satu rekening atau e-wallet berikut:</h6>
+                                                        <ul class="list-unstyled text-dark">
+                                                            <li><i class="bi bi-credit-card fs-5 me-2"></i><strong>BRI:</strong> 056301069405502 a.n. Mayasari</li>
+                                                            <li><i class="bi bi-credit-card fs-5 me-2"></i><strong>BCA:</strong> 7995030829 a.n. Mayasari</li>
+                                                            <li><i class="bi bi-wallet fs-5 me-2"></i><strong>Dana:</strong> 082259419842 a.n. Mayasari</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="mt-4">
                                         <button type="submit" class="btn btn-success w-100 rounded-pill fw-bold">Daftar Sekarang</button>
                                     </div>
@@ -406,6 +438,27 @@
         navbar.classList.remove('navbar-scrolled');
         }
     });
+    </script>
+
+    <script>
+        // Menampilkan biaya berdasarkan kategori yang dipilih
+        const kategoriSelect = document.querySelector('[name="kategori_lari"]');
+        const kategoriLabel = document.getElementById("kategoriLabel");
+        const kuotaLabel = document.getElementById("kuotaLabel");
+        const biayaLabel = document.getElementById("biayaLabel");
+        
+        kategoriSelect.addEventListener("change", function() {
+            const kategori = kategoriSelect.value;
+            if (kategori === "Umum") {
+                kategoriLabel.textContent = "Umum";
+                kuotaLabel.textContent = "2.000 peserta";
+                biayaLabel.textContent = "Rp 180.000";
+            } else if (kategori === "Pelajar") {
+                kategoriLabel.textContent = "Pelajar";
+                kuotaLabel.textContent = "200 peserta";
+                biayaLabel.textContent = "Rp 150.000";
+            }
+        });
     </script>
 
     <script>

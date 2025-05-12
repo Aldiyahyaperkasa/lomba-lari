@@ -144,11 +144,12 @@ class AdminPesertaController extends BaseController
                 'status_pendaftaran' => 'Terkonfirmasi',
                 'nomor_peserta' => $nomor
             ]);
-            $peserta['nomor_peserta'] = $nomor;
         } else {
             $this->pesertaModel->update($id, ['status_pendaftaran' => 'Terkonfirmasi']);
         }
 
+        // Ambil ulang data peserta yang sudah diperbarui dari database
+        $peserta = $this->pesertaModel->find($id);
         $peserta['kode_qr'] = $kodeQR;
 
         // 5. Generate tiket dalam format PDF
@@ -164,7 +165,16 @@ class AdminPesertaController extends BaseController
         // 6. Kirim tiket melalui email
         $this->sendEmailTiket($peserta, $qrRelativePath, $tiketRelativePath); // Kirim email dengan path QR dan tiket
 
-        return redirect()->back()->with('success', 'Peserta berhasil dikonfirmasi & tiket terkirim.');
+        session()->setFlashdata('peserta_terkonfirmasi', [
+            'nomor_peserta' => $peserta['nomor_peserta'],
+            'nik' => $peserta['nik'],
+            'nama_peserta' => $peserta['nama_peserta'],
+            'alamat' => $peserta['alamat'],
+            'ukuran_baju' => $peserta['ukuran_baju'],
+            'riwayat_penyakit' => $peserta['riwayat_penyakit']
+        ]);
+
+        return redirect()->back();   
     }
 
 
