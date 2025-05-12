@@ -64,4 +64,14 @@ class PesertaModel extends Model
         return $prefix . str_pad($nextNumber, $maxLength, '0', STR_PAD_LEFT);
     }
 
+
+    public function getPesertaWithKodeQR($id_peserta)
+    {
+        return $this->select('peserta.*, kode_qr.kode_qr')
+                    ->join('kode_qr', 'kode_qr.id_peserta = peserta.id_peserta', 'left')
+                    ->where('peserta.id_peserta', $id_peserta)
+                    ->first();
+    }
+
+
 }

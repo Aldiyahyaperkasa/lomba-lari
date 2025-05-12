@@ -12,16 +12,20 @@
           <div class="col-md-3">
             <select name="kategori_lari" class="form-select">
               <option value="">-- Pilih Kategori Lari --</option>
-              <option value="Umum" <?= (isset($_GET['kategori_lari']) && $_GET['kategori_lari'] == 'Umum') ? 'selected' : ''; ?>>Umum</option>
-              <option value="Pelajar" <?= (isset($_GET['kategori_lari']) && $_GET['kategori_lari'] == 'Pelajar') ? 'selected' : ''; ?>>Pelajar</option>
-              <!-- Tambahkan kategori lain jika diperlukan -->
+              <option value="Umum" <?= ($kategori_lari == 'Umum') ? 'selected' : ''; ?>>Umum</option>
+              <option value="Pelajar" <?= ($kategori_lari == 'Pelajar') ? 'selected' : ''; ?>>Pelajar</option>
             </select>
           </div>
+          <div class="col-md-4">
+            <input type="text" name="search" class="form-control" placeholder="Cari nama, username, email" value="<?= esc($search); ?>">
+          </div>
           <div class="col-md-3">
-            <button type="submit" class="btn btn-primary">Filter</button>
+            <button type="submit" class="btn btn-primary">Filter & Cari</button>
+            <a href="<?= base_url('AdminPesertaController/menunggu'); ?>" class="btn btn-secondary">Reset</a>
           </div>
         </div>
       </form>
+
 
       <div class="table-responsive">
         <table class="table table-sm table-striped table-hover align-middle text-nowrap" style="font-size: 0.85rem;">
@@ -94,7 +98,9 @@
           </tbody>
         </table>
       </div>
-
+      <div class="d-flex justify-content-end mt-3">
+        <?= $pager->links('peserta', 'default_full'); ?>
+      </div>
     </div>
   </div>
 </div>

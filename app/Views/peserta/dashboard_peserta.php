@@ -157,14 +157,28 @@
             color: white;
         }
     
-        footer {
-            background: #FFD700;
-            color: #003366;
-            padding: 20px 0;
+        .footer-banner {
+          background: url('<?= base_url('assets/gambar/banner-memanjang.png') ?>') no-repeat center center;
+          background-size: cover;
+          position: relative;
+          color: white;
+        }
+
+        .footer-banner::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-color: rgba(0, 0, 0, 0.8); /* overlay gelap */
+          z-index: 1;
+        }
+
+        .footer-banner .footer-content {
+          position: relative;
+          z-index: 2;
         }
 
         footer a {
-            color: #003366;
+            color: #fff;
             text-decoration: none;
         }
 
@@ -221,12 +235,19 @@
                     <div class="card-body p-5">
                         <h5 class="fw-bold mb-4 text-primary">Data Diri Peserta</h5>
                         <div class="row g-3">
-                            <div class="col-md-12 mt-3">
+                            <div class="col-md-8 mt-3">
                                 <p class="mb-1 fw-semibold">Status Pendaftaran :
                                   <span class="badge p-2 bg-<?= $peserta['status_pendaftaran'] === 'Terkonfirmasi' ? 'success' : ($peserta['status_pendaftaran'] === 'Ditolak' ? 'danger' : 'warning'); ?>">
                                       <?= $peserta['status_pendaftaran']; ?>
                                   </span>
                                 </p>
+                            </div>
+                            <div class="col-md-4 mt-3 text-end">
+                                <?php if ($peserta['status_pendaftaran'] === 'Terkonfirmasi'): ?>
+                                    <a href="<?= site_url('peserta/exportToPDF'); ?>" class="btn btn-danger" target="_blank">
+                                    <i class="bi bi-download"></i>
+                                    Download Tiket</a>
+                                <?php endif; ?>
                             </div>
                             <div class="col-md-12 mt-3">
                                 <p class="mb-1 fw-semibold">Nomor Peserta :
@@ -235,6 +256,19 @@
                                     </span>
                                 </p>
                             </div>
+                            <!-- Kode QR -->
+                            <div class="col-md-12 mt-3">
+                                <p class="mb-1 fw-semibold">Kode QR Peserta :</p>
+                                <?php if (!empty($peserta['kode_qr'])): ?>
+                                    <div class="d-flex flex-column align-items-center">
+                                        <img src="<?= base_url('qrcodes/' . $peserta['kode_qr'] . '.png'); ?>" alt="Kode QR" class="img-thumbnail" style="max-height: 200px;">
+                                        <p class="mt-2"><?= $peserta['kode_qr']; ?></p>
+                                    </div>
+                                <?php else: ?>
+                                    <p class="text-warning">Kode QR belum tersedia.</p>
+                                <?php endif; ?>
+                            </div>
+
                             <hr>                          
                             <div class="col-md-6">
                                 <p class="mb-1 fw-semibold">Nama Lengkap</p>
@@ -286,7 +320,7 @@
                             </div>
                             <div class="col-md-6">
                                 <p class="mb-1 fw-semibold">No. Darurat 1</p>
-                                <div class="form-control bg-light"><?= $peserta['no_telepon_darurat_1']; ?></div>
+                                <div class="form-control bg-light"><?= $peserta['no_telepon_darurat_1'] ?: '-'; ?></div>
                             </div>
                             <div class="col-md-6">
                                 <p class="mb-1 fw-semibold">No. Darurat 2</p>
@@ -310,32 +344,36 @@
 </section>
 
 
-<!-- Footer -->
-    <footer class="footer mt-5">
-    <div class="container text-center">
-        <div class="row">
-        <div class="col-md-4 mb-3">
-            <h5>Tentang Kami</h5>
-            <p>Panitia resmi lomba lari nasional 2025 yang berkomitmen menyelenggarakan event berkualitas, sehat, dan kompetitif.</p>
+    <!-- Footer -->
+    <footer class="footer-banner pt-5 pb-3 mt-5 mb-5">
+        <div class="container footer-content">
+        <div class="row d-flex justify-content-between">            
+            <!-- Logo & Deskripsi -->
+            <div class="col-md-6 mb-4">          
+                <h4 class="fw-bold">Sangatta Festival Run 2025</h4>
+                <p class="small mt-2">Salah satu event fun run terbesar yang di adakan di kota sangatta di tahun 2025, yang di buka untuk seluruh masyarakat kalimantan timur. Dengan jalur yang menantang dengan pengalaman yang tak terlupakan. Sangatta festival run 2025 banyak menghadirkan konsep yang berbeda dan pastinya seru untuk di ikuti para pecinta lari untuk merasakan sensasi lari dengan penuh warna</p>
+                <p class="small">Tanggal: <strong>22 Juni 2025</strong></p>
+            </div>            
+
+            <!-- Sosial Media & Kontak -->
+            <div class="col-md-4 mb-4">
+            <h5 class="fw-semibold">Ikuti Kami</h5>
+                <div class="d-flex justify-content-start justify-content-md-start gap-3 mt-3">
+                    <a href="https://www.instagram.com/sangattafestivalrun?igsh=MTg5dHd0NWpuZmRodg==" target="_blank">
+                        <i class="bi bi-instagram text-white fs-5" target="_blank"></i>
+                        <p class="small mt-1" target="_blank">Instagram : <a href="https://www.instagram.com/sangattafestivalrun?igsh=MTg5dHd0NWpuZmRodg==" class="text-white">Sangatta Festival Run</a></p>
+                    </a>          
+                </div>          
+                <div class="my-5">
+                    <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">
+                    <img src="<?= base_url('assets/gambar/EO.jpeg') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">
+                </div>
+            </div>
         </div>
-        <div class="col-md-4 mb-3">
-            <h5>Navigasi</h5>
-            <ul class="list-unstyled">
-            <li><a href="#home">Beranda</a></li>
-            <li><a href="#tentang">Tentang</a></li>
-            <li><a href="#peserta">Peserta</a></li>
-            <li><a href="#juknis">Juknis</a></li>
-            </ul>
+
+        <hr class="border-light" />
+        <!-- <p class="text-center small mb-0">&copy; 2025 Sangatta Festival Run.</p> -->
         </div>
-        <div class="col-md-4 mb-3">
-            <h5>Kontak</h5>
-            <p>Email: info@sfr2025.id</p>
-            <p>WhatsApp: 0812-3456-7890</p>
-        </div>
-        </div>
-        <hr style="border-color: #ccff66;">
-        <p>&copy; 2025 Sangatta Festival Run. All rights reserved.</p>
-    </div>
     </footer>
 
 

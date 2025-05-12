@@ -87,7 +87,7 @@
             </div>
 
             <!-- Pagination -->
-            <div class="d-flex justify-content-end mt-3">
+            <div class="d-flex justify-content-end m-3">
                 <?= $pager->links() ?>
             </div>
         </div>

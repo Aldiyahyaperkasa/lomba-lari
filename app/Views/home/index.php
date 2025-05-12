@@ -171,8 +171,8 @@
         .text-primary { color: #003366 !important; }
         .bg-primary { background-color: #003366 !important; }
 
-        .text-success { color: #f72585 !important; }
-        .bg-success { background-color: #f72585 !important; }
+        .text-pink { color: #f72585 !important; }
+        .bg-pink { background-color: #f72585 !important; }
 
         .text-warning { color: #FFD700 !important; }
         .bg-warning { background-color: #FFD700 !important; }
@@ -316,10 +316,39 @@
           </h2>
           <div id="kategoriCollapse" class="accordion-collapse collapse" data-bs-parent="#juknisAccordion">
             <div class="accordion-body">
-              <ul>
-                <li>Umum: 2.000 kuota</li>
-                <li>Pelajar: 200 kuota</li>
-              </ul>
+              <div class="row g-4">
+                <!-- Umum -->
+                <div class="col-md-6">
+                  <div class="p-3 border rounded bg-light h-100 shadow-sm">
+                    <div class="d-flex align-items-center mb-2">
+                      <div class="icon-circle bg-primary text-white me-3">
+                        <i class="bi bi-people-fill fs-4"></i>
+                      </div>
+                      <div>
+                        <h5 class="mb-0 text-primary">Kategori Umum</h5>
+                      </div>
+                    </div>
+                    <p class="mb-1 text-muted">Kuota: <strong>2.000 peserta</strong></p>
+                    <p class="mb-0 text-muted">Biaya Registrasi: <span class="fw-bold text-primary">Rp 180.000</span></p>
+                  </div>
+                </div>
+
+                <!-- Pelajar -->
+                <div class="col-md-6">
+                  <div class="p-3 border rounded bg-light h-100 shadow-sm">
+                    <div class="d-flex align-items-center mb-2">
+                      <div class="icon-circle bg-pink text-white me-3">
+                        <i class="bi bi-mortarboard-fill fs-4"></i>
+                      </div>
+                      <div>
+                        <h5 class="mb-0 text-pink">Kategori Pelajar</h5>
+                      </div>
+                    </div>
+                    <p class="mb-1 text-muted">Kuota: <strong>200 peserta</strong></p>
+                    <p class="mb-0 text-muted">Biaya Registrasi: <span class="fw-bold text-pink">Rp 150.000</span></p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -385,22 +414,36 @@
                   <div class="icon-circle bg-primary text-white mb-3">
                     <i class="bi bi-person-plus fs-3"></i>
                   </div>
-                  <h5 class="fw-semibold text-primary">1. Daftar Akun</h5>
-                  <p class="text-muted">Isi data diri dan unggah bukti pembayaran.</p>
+                  <h5 class="fw-semibold text-primary">1. Isi Formulir Pendaftaran</h5>
+                  <p class="text-muted">Lengkapi seluruh data peserta dan data akun, lalu unggah bukti pembayaran.</p>
                 </div>
                 <div class="col-md-4 text-center">
-                  <div class="icon-circle bg-success text-white mb-3">
+                  <div class="icon-circle bg-info text-white mb-3">
+                    <i class="bi bi-exclamation-circle fs-3"></i>
+                  </div>
+                  <h5 class="fw-semibold text-info">2. Simpan Data Akun</h5>
+                  <p class="text-muted">Pastikan Anda mencatat username dan password untuk login sebagai peserta.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                  <div class="icon-circle bg-pink text-white mb-3">
                     <i class="bi bi-shield-check fs-3"></i>
                   </div>
-                  <h5 class="fw-semibold text-success">2. Verifikasi</h5>
+                  <h5 class="fw-semibold text-pink">3. Verifikasi</h5>
                   <p class="text-muted">Admin memverifikasi dalam 1x24 jam.</p>
                 </div>
-                <div class="col-md-4 text-center">
+                <div class="col-md-6 text-center">
                   <div class="icon-circle bg-warning text-white mb-3">
                     <i class="bi bi-envelope-paper fs-3"></i>
                   </div>
-                  <h5 class="fw-semibold text-warning">3. Terima Tiket</h5>
+                  <h5 class="fw-semibold text-warning">4. Terima Tiket</h5>
                   <p class="text-muted">Tiket dikirim ke email dalam bentuk QR Code.</p>
+                </div>
+                <div class="col-md-6 text-center">
+                  <div class="icon-circle bg-success text-white mb-3">
+                    <i class="bi bi-box-arrow-in-right fs-3"></i>
+                  </div>
+                  <h5 class="fw-semibold text-success">5. Akses Tiket</h5>
+                  <p class="text-muted">Tiket juga dapat diakses melalui halaman dashboard peserta setelah login.</p>
                 </div>
               </div>
             </div>
@@ -417,7 +460,7 @@
       <div class="row text-center text-md-start">
         
         <!-- Logo & Deskripsi -->
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 mb-4">          
           <h4 class="fw-bold">Sangatta Festival Run 2025</h4>
           <p class="small mt-2">Salah satu event fun run terbesar yang di adakan di kota sangatta di tahun 2025, yang di buka untuk seluruh masyarakat kalimantan timur. Dengan jalur yang menantang dengan pengalaman yang tak terlupakan. Sangatta festival run 2025 banyak menghadirkan konsep yang berbeda dan pastinya seru untuk di ikuti para pecinta lari untuk merasakan sensasi lari dengan penuh warna</p>
           <p class="small">Tanggal: <strong>22 Juni 2025</strong></p>
@@ -438,14 +481,16 @@
         <div class="col-md-4 mb-4">
           <h5 class="fw-semibold">Ikuti Kami</h5>
           <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-3">
-            <a href="#"><i class="bi bi-instagram text-white fs-5"></i></a>
-            <a href="#"><i class="bi bi-facebook text-white fs-5"></i></a>
-            <a href="#"><i class="bi bi-youtube text-white fs-5"></i></a>
+            <a href="https://www.instagram.com/sangattafestivalrun?igsh=MTg5dHd0NWpuZmRodg==" target="_blank">
+              <i class="bi bi-instagram text-white fs-5" target="_blank"></i>
+              <p class="small mt-1" target="_blank">Instagram : <a href="https://www.instagram.com/sangattafestivalrun?igsh=MTg5dHd0NWpuZmRodg==" class="text-white">Sangatta Festival Run</a></p>
+            </a>          
+          </div>          
+          <div class="my-5">
+            <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">
+            <img src="<?= base_url('assets/gambar/EO.jpeg') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">
           </div>
-          <p class="small mt-3 mb-1">Email: <a href="mailto:info@sfr2025.com" class="text-white">info@sfr2025.com</a></p>
-          <p class="small">Telepon: <a href="tel:+6281234567890" class="text-white">+62 812-3456-7890</a></p>
         </div>
-
       </div>
 
       <hr class="border-light" />

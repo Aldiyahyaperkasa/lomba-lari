@@ -357,14 +357,14 @@
         <div class="row text-center text-md-start">
             
             <!-- Logo & Deskripsi -->
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4">          
             <h4 class="fw-bold">Sangatta Festival Run 2025</h4>
-            <p class="small mt-2">Berlari bersama merayakan semangat sehat dan kebersamaan di Sangatta!</p>
+            <p class="small mt-2">Salah satu event fun run terbesar yang di adakan di kota sangatta di tahun 2025, yang di buka untuk seluruh masyarakat kalimantan timur. Dengan jalur yang menantang dengan pengalaman yang tak terlupakan. Sangatta festival run 2025 banyak menghadirkan konsep yang berbeda dan pastinya seru untuk di ikuti para pecinta lari untuk merasakan sensasi lari dengan penuh warna</p>
             <p class="small">Tanggal: <strong>22 Juni 2025</strong></p>
             </div>
 
             <!-- Navigasi -->
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4 text-center">
             <h5 class="fw-semibold">Navigasi</h5>
             <ul class="list-unstyled mt-3">
                 <li><a href="<?= base_url('/'); ?>" class="text-white text-decoration-none d-block mb-1">Beranda</a></li>
@@ -378,18 +378,20 @@
             <div class="col-md-4 mb-4">
             <h5 class="fw-semibold">Ikuti Kami</h5>
             <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-3">
-                <a href="#"><i class="bi bi-instagram text-white fs-5"></i></a>
-                <a href="#"><i class="bi bi-facebook text-white fs-5"></i></a>
-                <a href="#"><i class="bi bi-youtube text-white fs-5"></i></a>
+                <a href="https://www.instagram.com/sangattafestivalrun?igsh=MTg5dHd0NWpuZmRodg==" target="_blank">
+                <i class="bi bi-instagram text-white fs-5" target="_blank"></i>
+                <p class="small mt-1" target="_blank">Instagram : <a href="https://www.instagram.com/sangattafestivalrun?igsh=MTg5dHd0NWpuZmRodg==" class="text-white">Sangatta Festival Run</a></p>
+                </a>          
+            </div>          
+            <div class="my-5">
+                <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">
+                <img src="<?= base_url('assets/gambar/EO.jpeg') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">
             </div>
-            <p class="small mt-3 mb-1">Email: <a href="mailto:info@sfr2025.com" class="text-white">info@sfr2025.com</a></p>
-            <p class="small">Telepon: <a href="tel:+6281234567890" class="text-white">+62 812-3456-7890</a></p>
             </div>
-
         </div>
 
         <hr class="border-light" />
-        <p class="text-center small mb-0">&copy; 2025 Sangatta Festival Run. All rights reserved.</p>
+        <!-- <p class="text-center small mb-0">&copy; 2025 Sangatta Festival Run.</p> -->
         </div>
     </footer>
 

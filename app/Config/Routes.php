@@ -15,6 +15,7 @@ $routes->post('PendaftaranController/store', 'PendaftaranController::store');
 
 $routes->post('/LoginController/submit', 'LoginController::submit'); 
 $routes->get('/PesertaController/index', 'PesertaController::index');
+$routes->get('peserta/exportToPDF', 'PesertaController::exportToPDF');
 $routes->get('LoginController/logout', 'LoginController::logout');
 
 

@@ -10,7 +10,11 @@ use PHPMailer\PHPMailer\Exception;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 use App\Libraries\QRCodeHelper;
-use App\Libraries\TiketImageGenerator;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
+// use App\Libraries\TiketImageGenerator;
+use App\Libraries\TiketPDFGenerator;
 
 
 use CodeIgniter\Email\Email;
@@ -28,51 +32,73 @@ class AdminPesertaController extends BaseController
     public function menunggu()
     {
         $kategori_lari = $this->request->getGet('kategori_lari');
-        
-        // Jika kategori lari dipilih, filter berdasarkan kategori tersebut
+        $search = $this->request->getGet('search');
+        $currentPage = $this->request->getVar('page_peserta') ?? 1;
+
+        $this->pesertaModel
+            ->where('status_pendaftaran', 'Menunggu');
+
         if ($kategori_lari) {
-            $data['peserta'] = $this->pesertaModel
-                ->where('status_pendaftaran', 'Menunggu')
-                ->where('kategori_lari', $kategori_lari)
-                ->orderBy('tanggal_daftar', 'DESC')
-                ->findAll();
-        } else {
-            // Jika tidak ada kategori lari yang dipilih, tampilkan semua peserta yang menunggu
-            $data['peserta'] = $this->pesertaModel
-                ->where('status_pendaftaran', 'Menunggu')
-                ->orderBy('tanggal_daftar', 'DESC')
-                ->findAll();
+            $this->pesertaModel->where('kategori_lari', $kategori_lari);
         }
 
+        if ($search) {
+            $this->pesertaModel->groupStart()
+                ->like('nama_peserta', $search)
+                ->orLike('username', $search)
+                ->orLike('email', $search)
+                ->groupEnd();
+        }
+
+        $data['peserta'] = $this->pesertaModel
+            ->orderBy('tanggal_daftar', 'DESC')
+            ->paginate(10, 'peserta'); // currentPage tidak perlu, CI4 handle otomatis
+
+        $data['pager'] = $this->pesertaModel->pager;
         $data['title'] = 'Peserta Mendaftar';
-        
+        $data['kategori_lari'] = $kategori_lari;
+        $data['search'] = $search;
+
         return view('admin/peserta/peserta_mendaftar', $data);
     }
+
 
     // Peserta yang sudah terkonfirmasi
     public function terkonfirmasi()
     {
         $kategori_lari = $this->request->getGet('kategori_lari');
-        
-        // Jika kategori lari dipilih, filter berdasarkan kategori tersebut
+        $search = $this->request->getGet('search');
+        $currentPage = $this->request->getVar('page_peserta') ?? 1;
+
+        // Reset query builder
+        $this->pesertaModel->resetQuery();
+
+        $this->pesertaModel->where('status_pendaftaran', 'Terkonfirmasi');
+
         if ($kategori_lari) {
-            $data['peserta'] = $this->pesertaModel
-                ->where('status_pendaftaran', 'Terkonfirmasi')
-                ->where('kategori_lari', $kategori_lari)
-                ->orderBy('tanggal_daftar', 'DESC')
-                ->findAll();
-        } else {
-            // Jika tidak ada kategori lari yang dipilih, tampilkan semua peserta yang terkonfirmasi
-            $data['peserta'] = $this->pesertaModel
-                ->where('status_pendaftaran', 'Terkonfirmasi')
-                ->orderBy('tanggal_daftar', 'DESC')
-                ->findAll();
+            $this->pesertaModel->where('kategori_lari', $kategori_lari);
         }
 
+        if ($search) {
+            $this->pesertaModel->groupStart()
+                ->like('nama_peserta', $search)
+                ->orLike('username', $search)
+                ->orLike('email', $search)
+                ->groupEnd();
+        }
+
+        $data['peserta'] = $this->pesertaModel
+            ->orderBy('tanggal_daftar', 'DESC')
+            ->paginate(2, 'peserta'); // 10 peserta per halaman
+
+        $data['pager'] = $this->pesertaModel->pager;
         $data['title'] = 'Peserta Terkonfirmasi';
-        
+        $data['kategori_lari'] = $kategori_lari;
+        $data['search'] = $search;
+
         return view('admin/peserta/peserta_terkonfirmasi', $data);
     }
+
 
     public function buktiBayar($filename)
     {
@@ -88,58 +114,58 @@ class AdminPesertaController extends BaseController
             ->setContentType(mime_content_type($path));
     }
 
-public function konfirmasi($id)
-{
-    $peserta = $this->pesertaModel->find($id);
+    public function konfirmasi($id)
+    {
+        $peserta = $this->pesertaModel->find($id);
 
-    if (!$peserta) {
-        return redirect()->back()->with('error', 'Peserta tidak ditemukan.');
-    }
+        if (!$peserta) {
+            return redirect()->back()->with('error', 'Peserta tidak ditemukan.');
+        }
 
-    // 1. Generate kode QR jika belum ada
-    $kodeQR = 'QR-' . strtoupper(bin2hex(random_bytes(4))); // Contoh: QR-1A2B3C4D
-    $filename = $kodeQR . '.png';
+        // 1. Generate kode QR jika belum ada
+        $kodeQR = 'QR-' . strtoupper(bin2hex(random_bytes(4))); // Contoh: QR-1A2B3C4D
+        $filename = $kodeQR . '.png';
 
-    // 2. Buat gambar QR code
-    $qrPath = QRCodeHelper::generate($kodeQR, $filename); // simpan di public/qrcodes/$filename
+        // 2. Buat gambar QR code
+        $qrPath = QRCodeHelper::generate($kodeQR, $filename); // simpan di public/qrcodes/$filename
 
-    // 3. Simpan data QR ke tabel kode_qr
-    $db = \Config\Database::connect();
-    $db->table('kode_qr')->insert([
-        'id_peserta' => $id,
-        'kode_qr' => $kodeQR,
-        'qr_code_path' => $qrPath // Path relatif
-    ]);
-
-    // 4. Generate nomor peserta jika belum ada
-    if (!$peserta['nomor_peserta']) {
-        $nomor = $this->pesertaModel->generateNomorPeserta($peserta['kategori_lari']);
-        $this->pesertaModel->update($id, [
-            'status_pendaftaran' => 'Terkonfirmasi',
-            'nomor_peserta' => $nomor
+        // 3. Simpan data QR ke tabel kode_qr
+        $db = \Config\Database::connect();
+        $db->table('kode_qr')->insert([
+            'id_peserta' => $id,
+            'kode_qr' => $kodeQR,
+            'qr_code_path' => $qrPath // Path relatif
         ]);
-        $peserta['nomor_peserta'] = $nomor;
-    } else {
-        $this->pesertaModel->update($id, ['status_pendaftaran' => 'Terkonfirmasi']);
+
+        // 4. Generate nomor peserta jika belum ada
+        if (!$peserta['nomor_peserta']) {
+            $nomor = $this->pesertaModel->generateNomorPeserta($peserta['kategori_lari']);
+            $this->pesertaModel->update($id, [
+                'status_pendaftaran' => 'Terkonfirmasi',
+                'nomor_peserta' => $nomor
+            ]);
+            $peserta['nomor_peserta'] = $nomor;
+        } else {
+            $this->pesertaModel->update($id, ['status_pendaftaran' => 'Terkonfirmasi']);
+        }
+
+        $peserta['kode_qr'] = $kodeQR;
+
+        // 5. Generate tiket dalam format PDF
+        $tiketOutputPath = 'tiket/tiket_' . $peserta['nomor_peserta'] . '.pdf';
+        TiketPDFGenerator::generate($peserta, FCPATH . $qrPath, FCPATH . $tiketOutputPath);
+
+        // Menentukan path relatif tiket untuk email
+        $tiketRelativePath = 'tiket/tiket_' . $peserta['nomor_peserta'] . '.pdf';
+
+        // Menentukan path relatif QR untuk email
+        $qrRelativePath = 'qrcodes/' . $filename; // Path relatif ke folder qrcodes
+
+        // 6. Kirim tiket melalui email
+        $this->sendEmailTiket($peserta, $qrRelativePath, $tiketRelativePath); // Kirim email dengan path QR dan tiket
+
+        return redirect()->back()->with('success', 'Peserta berhasil dikonfirmasi & tiket terkirim.');
     }
-
-    $peserta['kode_qr'] = $kodeQR;
-
-    // 5. Generate tiket gambar
-    $tiketOutputPath = 'tiket/tiket_' . $peserta['nomor_peserta'] . '.png';
-    TiketImageGenerator::generate($peserta, FCPATH . $qrPath, FCPATH . $tiketOutputPath);
-
-    // Menentukan path relatif tiket untuk email
-    $tiketRelativePath = 'tiket/tiket_' . $peserta['nomor_peserta'] . '.png';
-
-    // Menentukan path relatif QR untuk email
-    $qrRelativePath = 'qrcodes/' . $filename; // Path relatif ke folder qrcodes
-
-    // 6. Kirim tiket melalui email
-    $this->sendEmailTiket($peserta, $qrRelativePath, $tiketRelativePath); // Kirim email dengan path QR dan tiket
-
-    return redirect()->back()->with('success', 'Peserta berhasil dikonfirmasi & tiket terkirim.');
-}
 
 
 
@@ -150,61 +176,61 @@ public function konfirmasi($id)
     }
 
 
-public function sendEmailTiket($peserta, $qrRelativePath, $tiketRelativePath)
-{
-    require_once APPPATH . '../vendor/autoload.php'; // pastikan PHPMailer autoload
+    public function sendEmailTiket($peserta, $qrRelativePath, $tiketRelativePath)
+    {
+        require_once APPPATH . '../vendor/autoload.php'; // pastikan PHPMailer autoload
+        
 
-    $mail = new PHPMailer(true);
+        $mail = new PHPMailer(true);
 
-    try {
-        // Konfigurasi server SMTP Gmail
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'aldiyahyap@gmail.com'; // Ganti dengan email pengirim
-        $mail->Password   = 'jdnyhxvphotnrvqm';      // App password Gmail
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port       = 465;
+        try {
+            // Konfigurasi server SMTP Gmail
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'aldiyahyap@gmail.com'; // Ganti dengan email pengirim
+            // $mail->Username   = 'festivalrunsangatta@gmail.com'; // Ganti dengan email pengirim
+            $mail->Password   = 'jdnyhxvphotnrvqm';      // App password Gmail
+            // $mail->Password   = 'qhzjrspyzhktiaqp';      // App password Gmail
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port       = 465;
 
-        // Pengirim dan penerima
-        $mail->setFrom('aldiyahyap@gmail.com', 'Sangatta Festival Run 2025');
-        $mail->addAddress($peserta['email'], $peserta['nama_peserta']);
+            // Pengirim dan penerima
+            $mail->setFrom('aldiyahyap@gmail.com', 'Sangatta Festival Run 2025');
+            $mail->addAddress($peserta['email'], $peserta['nama_peserta']);
 
-        // Isi email
-        $mail->isHTML(true);
-        $mail->Subject = 'Tiket Anda untuk Sangatta Festival Run 2025';
+            // Isi email
+            $mail->isHTML(true);
+            $mail->Subject = 'Tiket Anda untuk Sangatta Festival Run 2025';
 
-        $qrUrl = base_url($qrRelativePath);
-        $tiketUrl = base_url($tiketRelativePath); // Path tiket untuk email
+            $qrUrl = base_url($qrRelativePath);
+            $tiketUrl = base_url($tiketRelativePath); // Path tiket untuk email
 
-        $mail->Body = 'Halo ' . esc($peserta['nama_peserta']) . ',<br><br>' .
-            'Terima kasih telah mendaftar untuk event lari. Berikut adalah tiket Anda:<br>' .
-            'Nomor Peserta: ' . esc($peserta['nomor_peserta']) . '<br>' .
-            'Kategori Lari: ' . esc($peserta['kategori_lari']) . '<br>' .
-            'Ukuran Baju: ' . esc($peserta['ukuran_baju']) . '<br><br>' .
-            'Berikut adalah QR Code Anda:<br>' .
-            '<img src="' . base_url($qrRelativePath) . '" alt="QR Code" style="max-width:200px;"><br>' .
-            'Silakan membawa QR Code saat mengambil nomor peserta dan baju.<br><br>' .
-            'Berikut juga terlampir tiket Anda.<br><br>' .
-            'Terima kasih.';
+            $mail->Body = 'Halo ' . esc($peserta['nama_peserta']) . ',<br><br>' .
+                'Terima kasih telah mendaftar untuk event lari. Berikut adalah tiket Anda:<br>' .
+                'Nomor Peserta: ' . esc($peserta['nomor_peserta']) . '<br>' .
+                'Kategori Lari: ' . esc($peserta['kategori_lari']) . '<br>' .
+                'Ukuran Baju: ' . esc($peserta['ukuran_baju']) . '<br><br>' .
+                'Berikut adalah QR Code Anda:<br>' .
+                '<img src="' . base_url($qrRelativePath) . '" alt="QR Code" style="max-width:200px;"><br>' .
+                'Silakan membawa QR Code saat mengambil nomor peserta dan baju.<br><br>' .
+                'Berikut juga terlampir tiket Anda dalam format PDF.<br><br>' .
+                'Terima kasih.';
 
+            // Lampirkan tiket dalam format PDF
+            $mail->addAttachment(FCPATH . $tiketRelativePath, 'Tiket_Sangatta_' . $peserta['nomor_peserta'] . '.pdf');
 
-        // Lampirkan QR code
-        $mail->addEmbeddedImage(FCPATH . $qrRelativePath, 'qrcodeimage', 'qr_code.png', 'base64', 'image/png');
-        // Lampirkan gambar tiket
-        $mail->addAttachment(FCPATH . $tiketRelativePath, 'Tiket_Sangatta_' . $peserta['nomor_peserta'] . '.png');
+            $mail->send();
 
-        $mail->send();
+            session()->setFlashdata('success', 'Email berhasil dikirim ke ' . $peserta['email']);
+            return true;
 
-        session()->setFlashdata('success', 'Email berhasil dikirim ke ' . $peserta['email']);
-        return true;
-
-    } catch (Exception $e) {
-        log_message('error', 'Email gagal dikirim. Error: ' . $mail->ErrorInfo);
-        session()->setFlashdata('error', 'Email gagal dikirim ke ' . $peserta['email']);
-        return false;
+        } catch (Exception $e) {
+            log_message('error', 'Email gagal dikirim. Error: ' . $mail->ErrorInfo);
+            session()->setFlashdata('error', 'Email gagal dikirim ke ' . $peserta['email']);
+            return false;
+        }
     }
-}
 
 
 

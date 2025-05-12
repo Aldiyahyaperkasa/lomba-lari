@@ -15,13 +15,16 @@
           <div class="col-md-3">
             <select name="kategori_lari" class="form-select">
               <option value="">-- Pilih Kategori Lari --</option>
-              <option value="Umum" <?= (isset($_GET['kategori_lari']) && $_GET['kategori_lari'] == 'Umum') ? 'selected' : ''; ?>>Umum</option>
-              <option value="Pelajar" <?= (isset($_GET['kategori_lari']) && $_GET['kategori_lari'] == 'Pelajar') ? 'selected' : ''; ?>>Pelajar</option>
-              <!-- Tambahkan kategori lain jika diperlukan -->
+              <option value="Umum" <?= ($kategori_lari == 'Umum') ? 'selected' : ''; ?>>Umum</option>
+              <option value="Pelajar" <?= ($kategori_lari == 'Pelajar') ? 'selected' : ''; ?>>Pelajar</option>
             </select>
           </div>
           <div class="col-md-3">
+            <input type="text" name="search" class="form-control" placeholder="Cari nama/email/username" value="<?= esc($search); ?>">
+          </div>
+          <div class="col-md-3">
             <button type="submit" class="btn btn-primary">Filter</button>
+            <a href="<?= base_url('AdminPesertaController/terkonfirmasi'); ?>" class="btn btn-secondary">Reset</a>
           </div>
         </div>
       </form>
@@ -92,9 +95,11 @@
               </tr>
             <?php endif; ?>
           </tbody>
-        </table>
+        </table>        
       </div>
-
+      <div class="d-flex justify-content-end m-3 ">
+        <?= $pager->links('peserta', 'default_full'); ?>
+      </div>
     </div>
   </div>
 </div>
