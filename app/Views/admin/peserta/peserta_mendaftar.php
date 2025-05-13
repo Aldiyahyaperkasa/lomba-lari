@@ -85,8 +85,8 @@
                   </td>
                   <td><?= date('d-m-Y H:i', strtotime($p['tanggal_daftar'])); ?></td>
                   <td class="text-center">
-                    <a href="<?= base_url('AdminPesertaController/konfirmasi/' . $p['id_peserta']); ?>" class="btn btn-success btn-sm">Konfirmasi</a>
-                    <a href="<?= base_url('AdminPesertaController/tolak/' . $p['id_peserta']); ?>" class="btn btn-danger btn-sm">Tolak</a>
+                    <a href="<?= base_url('AdminPesertaController/konfirmasi/' . $p['id_peserta']); ?>" class="btn btn-success btn-sm btn-konfirmasi">Konfirmasi</a>
+                    <a href="<?= base_url('AdminPesertaController/tolak/' . $p['id_peserta']); ?>" class="btn btn-danger btn-sm btn-tolak">Tolak</a>
                   </td>
                 </tr>
               <?php endforeach; ?>
@@ -109,33 +109,29 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<?php if (session()->getFlashdata('peserta_terkonfirmasi')): 
-    $data = session()->getFlashdata('peserta_terkonfirmasi');
-?>
 <script>
-Swal.fire({
-    title: 'Peserta Terkonfirmasi!',
-    html: `
-        <strong>Nomor Peserta:</strong> <?= $data['nomor_peserta']; ?><br>
-        <strong>NIK:</strong> <?= $data['nik']; ?><br>
-        <strong>Nama:</strong> <?= $data['nama_peserta']; ?><br>
-        <strong>Alamat:</strong> <?= $data['alamat']; ?><br>
-        <strong>Ukuran Baju:</strong> <?= $data['ukuran_baju']; ?><br>
-        <strong>Riwayat Penyakit:</strong> <?= $data['riwayat_penyakit']; ?><br>
-        <hr>
-        Tiket & QR telah berhasil dikirim ke email peserta.
-    `,
-    icon: 'success',
-    confirmButtonText: 'Tutup',
-    customClass: {
-        popup: 'text-start'
-    }
-});
-</script>
-<?php endif; ?>
+  // Konfirmasi
+  document.querySelectorAll('.btn-konfirmasi').forEach(function(button) {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const href = this.getAttribute('href');
 
+      Swal.fire({
+        title: 'Yakin ingin menyetujui peserta ini?',
+        text: "Status akan menjadi 'Terkonfirmasi'!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#0095D9',
+        cancelButtonColor: '#f72585',
+        confirmButtonText: 'Ya, Konfirmasi!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = href;
+        }
+      });
+    });
+  });
 
-<script>
   // Tolak
   document.querySelectorAll('.btn-tolak').forEach(function(button) {
     button.addEventListener('click', function(e) {
@@ -160,4 +156,42 @@ Swal.fire({
 </script>
 
 
+    <?php if (session()->getFlashdata('success')) : ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses',
+                text: '<?= session()->getFlashdata('success'); ?>',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        </script>
+    <?php endif; ?>
+
+
+
+<!-- <?php if (session()->getFlashdata('peserta_terkonfirmasi')): 
+  $data = session()->getFlashdata('peserta_terkonfirmasi');
+?>
+<script>
+Swal.fire({
+    title: 'Peserta Terkonfirmasi!',
+    html: `
+        <strong>Nomor Peserta:</strong> <?= $data['nomor_peserta']; ?><br>
+        <strong>NIK:</strong> <?= $data['nik']; ?><br>
+        <strong>Nama:</strong> <?= $data['nama_peserta']; ?><br>
+        <strong>Alamat:</strong> <?= $data['alamat']; ?><br>
+        <strong>Ukuran Baju:</strong> <?= $data['ukuran_baju']; ?><br>
+        <strong>Riwayat Penyakit:</strong> <?= $data['riwayat_penyakit']; ?><br>
+        <hr>
+        Tiket & QR telah berhasil dikirim ke email peserta.
+    `,
+    icon: 'success',
+    confirmButtonText: 'Tutup',
+    customClass: {
+        popup: 'text-start'
+    }
+});
+</script>
+<?php endif; ?> -->
 <?= $this->endSection(); ?>

@@ -165,16 +165,17 @@ class AdminPesertaController extends BaseController
         // 6. Kirim tiket melalui email
         $this->sendEmailTiket($peserta, $qrRelativePath, $tiketRelativePath); // Kirim email dengan path QR dan tiket
 
-        session()->setFlashdata('peserta_terkonfirmasi', [
-            'nomor_peserta' => $peserta['nomor_peserta'],
-            'nik' => $peserta['nik'],
-            'nama_peserta' => $peserta['nama_peserta'],
-            'alamat' => $peserta['alamat'],
-            'ukuran_baju' => $peserta['ukuran_baju'],
-            'riwayat_penyakit' => $peserta['riwayat_penyakit']
-        ]);
+        return redirect()->back()->with('success', 'Peserta berhasil dikonfirmasi & tiket terkirim.');        
+        // session()->setFlashdata('peserta_terkonfirmasi', [
+        //     'nomor_peserta' => $peserta['nomor_peserta'],
+        //     'nik' => $peserta['nik'],
+        //     'nama_peserta' => $peserta['nama_peserta'],
+        //     'alamat' => $peserta['alamat'],
+        //     'ukuran_baju' => $peserta['ukuran_baju'],
+        //     'riwayat_penyakit' => $peserta['riwayat_penyakit']
+        // ]);
 
-        return redirect()->back();   
+        // return redirect()->back();   
     }
 
 
@@ -198,15 +199,15 @@ class AdminPesertaController extends BaseController
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'aldiyahyap@gmail.com'; // Ganti dengan email pengirim
+            $mail->Username   = 'festivalrunsangatta@gmail.com'; // Ganti dengan email pengirim
             // $mail->Username   = 'festivalrunsangatta@gmail.com'; // Ganti dengan email pengirim
-            $mail->Password   = 'jdnyhxvphotnrvqm';      // App password Gmail
+            $mail->Password   = 'qhzjrspyzhktiaqp';      // App password Gmail
             // $mail->Password   = 'qhzjrspyzhktiaqp';      // App password Gmail
             $mail->SMTPSecure = 'ssl';
             $mail->Port       = 465;
 
             // Pengirim dan penerima
-            $mail->setFrom('aldiyahyap@gmail.com', 'Sangatta Festival Run 2025');
+            $mail->setFrom('festivalrunsangatta@gmail.com', 'Sangatta Festival Run 2025');
             $mail->addAddress($peserta['email'], $peserta['nama_peserta']);
 
             // Isi email

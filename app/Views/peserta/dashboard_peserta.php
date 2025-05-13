@@ -231,106 +231,184 @@
 
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="card shadow rounded-4 border-0">
+                <div class="card shadow rounded-4 border-0">                    
                     <div class="card-body p-5">
-                        <h5 class="fw-bold mb-4 text-primary">Data Diri Peserta</h5>
-                        <div class="row g-3">
-                            <div class="col-md-8 mt-3">
-                                <p class="mb-1 fw-semibold">Status Pendaftaran :
-                                  <span class="badge p-2 bg-<?= $peserta['status_pendaftaran'] === 'Terkonfirmasi' ? 'success' : ($peserta['status_pendaftaran'] === 'Ditolak' ? 'danger' : 'warning'); ?>">
-                                      <?= $peserta['status_pendaftaran']; ?>
-                                  </span>
-                                </p>
-                            </div>
-                            <div class="col-md-4 mt-3 text-end">
-                                <?php if ($peserta['status_pendaftaran'] === 'Terkonfirmasi'): ?>
-                                    <a href="<?= site_url('peserta/exportToPDF'); ?>" class="btn btn-danger" target="_blank">
-                                    <i class="bi bi-download"></i>
-                                    Download Tiket</a>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-md-12 mt-3">
-                                <p class="mb-1 fw-semibold">Nomor Peserta :
-                                    <span class="badge p-2 bg-<?= $peserta['status_pendaftaran'] === 'Terkonfirmasi' ? 'success' : ($peserta['status_pendaftaran'] === 'Ditolak' ? 'danger' : 'warning'); ?>">
-                                        <?= $peserta['status_pendaftaran'] === 'Terkonfirmasi' ? $peserta['nomor_peserta'] : '-'; ?>
-                                    </span>
-                                </p>
-                            </div>
-                            <!-- Kode QR -->
-                            <div class="col-md-12 mt-3">
-                                <p class="mb-1 fw-semibold">Kode QR Peserta :</p>
-                                <?php if (!empty($peserta['kode_qr'])): ?>
-                                    <div class="d-flex flex-column align-items-center">
-                                        <img src="<?= base_url('qrcodes/' . $peserta['kode_qr'] . '.png'); ?>" alt="Kode QR" class="img-thumbnail" style="max-height: 200px;">
-                                        <p class="mt-2"><?= $peserta['kode_qr']; ?></p>
-                                    </div>
-                                <?php else: ?>
-                                    <p class="text-warning">Kode QR belum tersedia.</p>
-                                <?php endif; ?>
+
+                        <?php
+                        $status = $peserta['status_pendaftaran'];
+                        $bukti = $peserta['bukti_pembayaran'];
+                        ?>
+
+                        <?php if ($status === 'Menunggu' && empty($bukti)): ?>
+                            <!-- ✅ Kasus 1: Hanya form upload bukti bayar -->
+                                        <!-- Display Biaya Registrasi dan Informasi Pembayaran dalam Satu Card -->
+                                        <div class="mt-3 d-flex justify-content-center">
+                                            <div class="col-md-10">
+                                                <div class="p-4 border rounded bg-light shadow-lg">
+                                                    <div class="row">
+                                                        <!-- Sisi Kiri - Kategori dan Biaya Registrasi -->
+                                                        <div class="col-md-6">
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <div class="text-dark me-3">
+                                                                    <i class="bi bi-people-fill fs-4"></i>
+                                                                </div>
+                                                                <div>
+                                                                    <h5 class="mb-0 text-primary">Kategori Lari</h5>
+                                                                </div>
+                                                            </div>
+                                                            <?php
+                                                                if ($peserta['kategori_lari'] === 'Pelajar') {
+                                                                    $kategori = 'Pelajar';
+                                                                    $kuota = '200 peserta';
+                                                                    $biaya = 'Rp 150.000';
+                                                                } else {
+                                                                    $kategori = 'Umum';
+                                                                    $kuota = '2.000 peserta';
+                                                                    $biaya = 'Rp 180.000';
+                                                                }
+                                                            ?>
+                                                            <p class="mb-1 text-muted">Kategori: <strong id="kategoriLabel"><?= $kategori; ?></strong></p>
+                                                            <p class="mb-0 text-muted">Kuota: <strong id="kuotaLabel"><?= $kuota; ?></strong></p>
+                                                            <p class="mb-0 text-muted">Biaya Registrasi: <span id="biayaLabel" class="fw-bold text-primary"><?= $biaya; ?></span></p>
+                                                        </div>
+
+                                                        <!-- Sisi Kanan - Informasi Pembayaran -->
+                                                        <div class="col-md-6">
+                                                            <h6 class="text-dark mb-3">Silakan lakukan pembayaran ke salah satu rekening atau e-wallet berikut:</h6>
+                                                            <ul class="list-unstyled text-dark">
+                                                                <li><i class="bi bi-credit-card fs-5 me-2"></i><strong>BRI:</strong> 056301069405502 a.n. Mayasari</li>
+                                                                <li><i class="bi bi-credit-card fs-5 me-2"></i><strong>BCA:</strong> 7995030829 a.n. Mayasari</li>
+                                                                <li><i class="bi bi-wallet fs-5 me-2"></i><strong>Dana:</strong> 082259419842 a.n. Mayasari</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                            
+                            <div class="col-md-12 my-4">
+                                <form action="<?= base_url('PesertaController/uploadBuktiBayar'); ?>" method="post" enctype="multipart/form-data">
+                                    <label for="bukti_pembayaran" class="form-label fw-semibold">Upload Bukti Pembayaran</label>
+                                    <input class="form-control mb-2" type="file" name="bukti_pembayaran" accept="image/*" required>
+                                    <button type="submit" class="btn btn-success">Kirim Bukti Bayar</button>
+                                </form>
                             </div>
 
-                            <hr>                          
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">Nama Lengkap</p>
-                                <div class="form-control bg-light"><?= $peserta['nama_peserta']; ?></div>
+                        <?php else: ?>
+                            <!-- ✅ Kasus 2 dan 3: Tampilkan data peserta -->
+
+                            <?php if ($status === 'Menunggu' && !empty($bukti)): ?>
+                                <!-- ✅ Tampilkan tombol edit jika status Menunggu & bukti sudah ada -->
+                                <div class="text-end mb-4">
+                                    <a href="<?= base_url('PesertaController/edit'); ?>" class="btn btn-outline-primary rounded-pill">Edit Data Diri</a>
+                                </div>
+                            <?php endif; ?>
+
+                            <h5 class="fw-bold mb-4 text-primary">Data Diri Peserta</h5>
+                            <div class="row g-3">
+                                <div class="col-md-8 mt-3">
+                                    <p class="mb-1 fw-semibold">Status Pendaftaran :
+                                        <span class="badge p-2 bg-success">
+                                            <?= $peserta['status_pendaftaran']; ?>
+                                        </span>
+                                    </p>
+                                </div>
+                                <?php if ($peserta['status_pendaftaran'] === 'Terkonfirmasi'): ?>
+                                    <div class="col-md-4 mt-3 text-end">
+                                        <a href="<?= site_url('PesertaController/exportToPDF'); ?>" class="btn btn-danger" target="_blank">
+                                            <i class="bi bi-download"></i> Download Tiket
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+
+                                <div class="col-md-12 mt-3">
+                                    <p class="mb-1 fw-semibold">Kode Unik Peserta :
+                                        <span class="badge p-2 bg-success"><?= $peserta['nomor_peserta']; ?></span>
+                                    </p>
+                                </div>
+
+                                <!-- QR Code -->
+                                <div class="col-md-12 mt-3">
+                                    <p class="mb-1 fw-semibold">Kode QR Peserta :</p>
+                                    <?php if (!empty($peserta['kode_qr'])): ?>
+                                        <div class="d-flex flex-column align-items-center">
+                                            <img src="<?= base_url('qrcodes/' . $peserta['kode_qr'] . '.png'); ?>" alt="Kode QR" class="img-thumbnail" style="max-height: 200px;">
+                                            <p class="mt-2"><?= $peserta['kode_qr']; ?></p>
+                                        </div>
+                                    <?php else: ?>
+                                        <p class="text-warning">Kode QR belum tersedia.</p>
+                                    <?php endif; ?>
+                                </div>
+
+                                <hr>
+
+                                <!-- Data diri peserta -->
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">Nama Lengkap</p>
+                                    <div class="form-control bg-light"><?= $peserta['nama_peserta']; ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">Username</p>
+                                    <div class="form-control bg-light"><?= $peserta['username']; ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">Tanggal Lahir</p>
+                                    <div class="form-control bg-light"><?= date('d-m-Y', strtotime($peserta['tanggal_lahir'])); ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">Usia</p>
+                                    <div class="form-control bg-light"><?= $peserta['usia']; ?> tahun</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">Nomor Telepon</p>
+                                    <div class="form-control bg-light"><?= $peserta['no_telepon']; ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">Email</p>
+                                    <div class="form-control bg-light"><?= $peserta['email']; ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">Jenis Kelamin</p>
+                                    <div class="form-control bg-light"><?= $peserta['jenis_kelamin']; ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">Ukuran Baju</p>
+                                    <div class="form-control bg-light"><?= $peserta['ukuran_baju']; ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">NIK</p>
+                                    <div class="form-control bg-light"><?= $peserta['nik']; ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">Alamat</p>
+                                    <div class="form-control bg-light"><?= $peserta['alamat']; ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">Kategori Lari</p>
+                                    <div class="form-control bg-light"><?= $peserta['kategori_lari']; ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">Riwayat Penyakit</p>
+                                    <div class="form-control bg-light"><?= $peserta['riwayat_penyakit'] ?: 'Tidak ada'; ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">No. Darurat 1</p>
+                                    <div class="form-control bg-light"><?= $peserta['no_telepon_darurat_1'] ?: '-'; ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1 fw-semibold">No. Darurat 2</p>
+                                    <div class="form-control bg-light"><?= $peserta['no_telepon_darurat_2'] ?: '-'; ?></div>
+                                </div>
+                                <!-- Bukti Pembayaran -->
+                                <div class="col-md-12">
+                                    <p class="mb-1 fw-semibold">Bukti Pembayaran</p>
+                                    <?php if (!empty($bukti)): ?>
+                                        <img src="<?= base_url('bukti_bayar/' . $bukti); ?>" alt="Bukti Pembayaran" class="img-thumbnail" style="max-height: 300px;">
+                                    <?php else: ?>
+                                        <p class="text-warning">Belum ada bukti pembayaran yang diunggah.</p>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">Username</p>
-                                <div class="form-control bg-light"><?= $peserta['username']; ?></div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">Tanggal Lahir</p>
-                                <div class="form-control bg-light"><?= date('d-m-Y', strtotime($peserta['tanggal_lahir'])); ?></div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">Usia</p>
-                                <div class="form-control bg-light"><?= $peserta['usia']; ?> tahun</div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">Nomor Telepon</p>
-                                <div class="form-control bg-light"><?= $peserta['no_telepon']; ?></div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">Email</p>
-                                <div class="form-control bg-light"><?= $peserta['email']; ?></div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">Jenis Kelamin</p>
-                                <div class="form-control bg-light"><?= $peserta['jenis_kelamin']; ?></div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">Ukuran Baju</p>
-                                <div class="form-control bg-light"><?= $peserta['ukuran_baju']; ?></div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">NIK</p>
-                                <div class="form-control bg-light"><?= $peserta['nik']; ?></div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">Alamat</p>
-                                <div class="form-control bg-light"><?= $peserta['alamat']; ?></div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">Kategori Lari</p>
-                                <div class="form-control bg-light"><?= $peserta['kategori_lari']; ?></div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">Riwayat Penyakit</p>
-                                <div class="form-control bg-light"><?= $peserta['riwayat_penyakit'] ?: 'Tidak ada'; ?></div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">No. Darurat 1</p>
-                                <div class="form-control bg-light"><?= $peserta['no_telepon_darurat_1'] ?: '-'; ?></div>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-semibold">No. Darurat 2</p>
-                                <div class="form-control bg-light"><?= $peserta['no_telepon_darurat_2'] ?: '-'; ?></div>
-                            </div>
-                            <div class="col-md-12">
-                                <p class="mb-1 fw-semibold">Bukti Pembayaran</p>
-                                <img src="<?= base_url('bukti_bayar/' . $peserta['bukti_pembayaran']); ?>" alt="Bukti Pembayaran" class="img-thumbnail" style="max-height: 300px;">
-                            </div>
-                        </div>
+                        <?php endif; ?>
 
                         <div class="mt-4 text-end">
                             <a href="<?= base_url('LoginController/logout'); ?>" class="btn btn-outline-danger rounded-pill">Logout</a>
@@ -363,7 +441,13 @@
                         <i class="bi bi-instagram text-white fs-5" target="_blank"></i>
                         <p class="small mt-1" target="_blank">Instagram : <a href="https://www.instagram.com/sangattafestivalrun?igsh=MTg5dHd0NWpuZmRodg==" class="text-white">Sangatta Festival Run</a></p>
                     </a>          
-                </div>          
+                </div>        
+                <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-3">
+                    <a href="https://wa.me/628115913939" target="_blank" class="text-white d-flex align-items-center gap-2">
+                    <i class="bi bi-whatsapp fs-5"></i>
+                    <p class="small mb-0">Contact Person: 0811 5913 939</p>
+                    </a>
+                </div>                  
                 <div class="my-5">
                     <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">
                     <img src="<?= base_url('assets/gambar/EO.jpeg') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">
@@ -417,7 +501,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
+    <!-- <script>
         window.onload = function () {
             let select = document.getElementById('kategoriLari');
 
@@ -492,7 +576,7 @@
                 form.style.display = 'none';
             }
         });
-    </script>
+    </script> -->
 
 </body>
 

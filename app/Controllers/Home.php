@@ -63,5 +63,10 @@ class Home extends BaseController
         return view('home/semua_peserta', $data);
     }
 
+
+    public function maintenance() {
+        return view('home/maintenance');
+    }
+
 }
 

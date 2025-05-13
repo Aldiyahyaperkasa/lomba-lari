@@ -11,7 +11,7 @@
 
             <form method="get" action="" class="row g-3 align-items-end mb-4">
                 <div class="col-md-10">
-                    <input type="text" name="keyword" class="form-control" placeholder="Cari nama, NIK, kategori, atau nomor peserta..." value="<?= esc($keyword) ?>">
+                    <input type="text" name="keyword" class="form-control" placeholder="Cari nama, NIK, kategori, atau Kode Unik Peserta..." value="<?= esc($keyword) ?>">
                 </div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary w-100">
@@ -26,7 +26,7 @@
                     <thead class="">
                         <tr>
                             <th>Nama</th>
-                            <th>Nomor Peserta</th>
+                            <th>Kode Unik Peserta</th>
                             <th>Kategori</th>
                             <th>NIK</th>
                             <th>Status Pendaftaran</th>

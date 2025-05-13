@@ -29,7 +29,7 @@
         }
 
         .navbar-brand, .navbar-nav .nav-link {
-            color: #fff !important;
+            color: #000 !important;
             font-weight: 500;
         }
 
@@ -191,7 +191,7 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top bg-light">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#">
             <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo" width="60" class="me-2">
@@ -293,7 +293,7 @@
                                             <input type="text" class="form-control rounded-pill" id="alamat" name="alamat" value="<?= old('alamat') ?>" required>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="nik" class="form-label">NIK</label>
+                                            <label for="nik" class="form-label">NIK / Nomor Kartu Pelajar</label>
                                             <input type="text" class="form-control rounded-pill" id="nik" name="nik" value="<?= old('nik') ?>" placeholder="wajib 16 angka" required>
                                         </div>
                                         <div class="col-md-6">
@@ -333,44 +333,44 @@
                                             <label for="riwayatPenyakit" class="form-label">Riwayat Penyakit</label>
                                             <textarea class="form-control rounded-pill" id="riwayatPenyakit" name="riwayat_penyakit" rows="2" placeholder="Jika tidak ada, biarkan kosong"><?= old('riwayat_penyakit') ?></textarea>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label for="buktiBayar" class="form-label">Upload Bukti Pembayaran</label>
-                                            <input type="file" class="form-control rounded-pill" id="buktiBayar" name="bukti_pembayaran" required>
-                                        </div>
-                                    </div>
-                                    <!-- Display Biaya Registrasi dan Informasi Pembayaran dalam Satu Card -->
-                                    <div class="mt-3 d-flex justify-content-center">
-                                        <div class="col-md-10">
-                                            <div class="p-4 border rounded bg-light shadow-lg">
-                                                <div class="row">
-                                                    <!-- Sisi Kiri - Kategori dan Biaya Registrasi -->
-                                                    <div class="col-md-6">
-                                                        <div class="d-flex align-items-center mb-3">
-                                                            <div class="text-dark me-3">
-                                                                <i class="bi bi-people-fill fs-4"></i>
+                                        <!-- Display Biaya Registrasi dan Informasi Pembayaran dalam Satu Card -->
+                                        <!-- <div class="mt-3 d-flex justify-content-center">
+                                            <div class="col-md-10">
+                                                <div class="p-4 border rounded bg-light shadow-lg">
+                                                    <div class="row">
+                                                        Sisi Kiri - Kategori dan Biaya Registrasi
+                                                        <div class="col-md-6">
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <div class="text-dark me-3">
+                                                                    <i class="bi bi-people-fill fs-4"></i>
+                                                                </div>
+                                                                <div>
+                                                                    <h5 class="mb-0 text-primary">Kategori Lari</h5>
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                <h5 class="mb-0 text-primary">Kategori Lari</h5>
-                                                            </div>
+                                                            <p class="mb-1 text-muted">Kategori: <strong id="kategoriLabel">Umum</strong></p>
+                                                            <p class="mb-0 text-muted">Kuota: <strong id="kuotaLabel">2.000 peserta</strong></p>
+                                                            <p class="mb-0 text-muted">Biaya Registrasi: <span id="biayaLabel" class="fw-bold text-primary">Rp 180.000</span></p>
                                                         </div>
-                                                        <p class="mb-1 text-muted">Kategori: <strong id="kategoriLabel">Umum</strong></p>
-                                                        <p class="mb-0 text-muted">Kuota: <strong id="kuotaLabel">2.000 peserta</strong></p>
-                                                        <p class="mb-0 text-muted">Biaya Registrasi: <span id="biayaLabel" class="fw-bold text-primary">Rp 180.000</span></p>
-                                                    </div>
 
-                                                    <!-- Sisi Kanan - Informasi Pembayaran -->
-                                                    <div class="col-md-6">
-                                                        <h6 class="text-dark mb-3">Silakan lakukan pembayaran ke salah satu rekening atau e-wallet berikut:</h6>
-                                                        <ul class="list-unstyled text-dark">
-                                                            <li><i class="bi bi-credit-card fs-5 me-2"></i><strong>BRI:</strong> 056301069405502 a.n. Mayasari</li>
-                                                            <li><i class="bi bi-credit-card fs-5 me-2"></i><strong>BCA:</strong> 7995030829 a.n. Mayasari</li>
-                                                            <li><i class="bi bi-wallet fs-5 me-2"></i><strong>Dana:</strong> 082259419842 a.n. Mayasari</li>
-                                                        </ul>
+                                                        Sisi Kanan - Informasi Pembayaran
+                                                        <div class="col-md-6">
+                                                            <h6 class="text-dark mb-3">Silakan lakukan pembayaran ke salah satu rekening atau e-wallet berikut:</h6>
+                                                            <ul class="list-unstyled text-dark">
+                                                                <li><i class="bi bi-credit-card fs-5 me-2"></i><strong>BRI:</strong> 056301069405502 a.n. Mayasari</li>
+                                                                <li><i class="bi bi-credit-card fs-5 me-2"></i><strong>BCA:</strong> 7995030829 a.n. Mayasari</li>
+                                                                <li><i class="bi bi-wallet fs-5 me-2"></i><strong>Dana:</strong> 082259419842 a.n. Mayasari</li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div> -->
+                                        <!-- <div class="col-md-12">
+                                            <label for="buktiBayar" class="form-label">Upload Bukti Pembayaran</label>
+                                            <input type="file" class="form-control rounded-pill" id="buktiBayar" name="bukti_pembayaran" required>
+                                        </div> -->
+                                    </div>                                    
                                     <div class="mt-4">
                                         <button type="submit" class="btn btn-success w-100 rounded-pill fw-bold">Daftar Sekarang</button>
                                     </div>
@@ -414,7 +414,13 @@
                 <i class="bi bi-instagram text-white fs-5" target="_blank"></i>
                 <p class="small mt-1" target="_blank">Instagram : <a href="https://www.instagram.com/sangattafestivalrun?igsh=MTg5dHd0NWpuZmRodg==" class="text-white">Sangatta Festival Run</a></p>
                 </a>          
-            </div>          
+            </div>  
+            <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-3">
+                <a href="https://wa.me/628115913939" target="_blank" class="text-white d-flex align-items-center gap-2">
+                <i class="bi bi-whatsapp fs-5"></i>
+                <p class="small mb-0">Contact Person: 0811 5913 939</p>
+                </a>
+            </div>         
             <div class="my-5">
                 <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">
                 <img src="<?= base_url('assets/gambar/EO.jpeg') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">

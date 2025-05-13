@@ -129,10 +129,11 @@ public function sudahAmbilBaju()
         $sheet->setCellValue('F1', 'Email');
         $sheet->setCellValue('G1', 'Jenis Kelamin');
         $sheet->setCellValue('H1', 'Kategori');
-        $sheet->setCellValue('I1', 'Ukuran Baju');
-        $sheet->setCellValue('J1', 'Darurat 1');
-        $sheet->setCellValue('K1', 'Darurat 2');
-        $sheet->setCellValue('L1', 'Status');
+        $sheet->setCellValue('I1', 'Kode Unik Peserta');
+        $sheet->setCellValue('J1', 'Ukuran Baju');
+        $sheet->setCellValue('K1', 'Darurat 1');
+        $sheet->setCellValue('L1', 'Darurat 2');
+        $sheet->setCellValue('M1', 'Status');
 
         // Isi Data
         $row = 2;
@@ -146,10 +147,11 @@ public function sudahAmbilBaju()
             $sheet->setCellValue('F' . $row, $peserta['email']);
             $sheet->setCellValue('G' . $row, $peserta['jenis_kelamin']);
             $sheet->setCellValue('H' . $row, $peserta['kategori_lari']);
-            $sheet->setCellValue('I' . $row, $peserta['ukuran_baju']);
-            $sheet->setCellValue('J' . $row, $peserta['no_telepon_darurat_1']);
-            $sheet->setCellValue('K' . $row, $peserta['no_telepon_darurat_2']);
-            $sheet->setCellValue('L' . $row, $peserta['status_pendaftaran']);
+            $sheet->setCellValue('I' . $row, $peserta['nomor_peserta']);
+            $sheet->setCellValue('J' . $row, $peserta['ukuran_baju']);
+            $sheet->setCellValue('K' . $row, $peserta['no_telepon_darurat_1']);
+            $sheet->setCellValue('L' . $row, $peserta['no_telepon_darurat_2']);
+            $sheet->setCellValue('M' . $row, $peserta['status_pendaftaran']);
             $row++;
         }
 
@@ -200,8 +202,9 @@ public function sudahAmbilBaju()
     $sheet->setCellValue('E1', 'Email');
     $sheet->setCellValue('F1', 'Jenis Kelamin');
     $sheet->setCellValue('G1', 'Kategori');
-    $sheet->setCellValue('H1', 'Ukuran Baju');
-    $sheet->setCellValue('I1', 'Status Pengambilan');
+    $sheet->setCellValue('H1', 'Kode Unik Peserta');
+    $sheet->setCellValue('I1', 'Ukuran Baju');
+    $sheet->setCellValue('J1', 'Status Pengambilan');
 
     // Isi Data
     $row = 2;
@@ -214,8 +217,9 @@ public function sudahAmbilBaju()
         $sheet->setCellValue('E' . $row, $peserta['email']);
         $sheet->setCellValue('F' . $row, $peserta['jenis_kelamin']);
         $sheet->setCellValue('G' . $row, $peserta['kategori_lari']);
-        $sheet->setCellValue('H' . $row, $peserta['ukuran_baju']);
-        $sheet->setCellValue('I' . $row, $peserta['status_pengambilan']);
+        $sheet->setCellValue('H' . $row, $peserta['nomor_peserta']);
+        $sheet->setCellValue('I' . $row, $peserta['ukuran_baju']);
+        $sheet->setCellValue('J' . $row, $peserta['status_pengambilan']);
         $row++;
     }
 

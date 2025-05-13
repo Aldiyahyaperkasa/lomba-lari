@@ -50,7 +50,7 @@
               <th>Riwayat Penyakit</th>
               <th>Bukti Bayar</th>
               <th>Status</th>
-              <th>Nomor Peserta</th>
+              <th>Kode Unik Peserta</th>
               <th>Tanggal Daftar</th>
             </tr>
           </thead>

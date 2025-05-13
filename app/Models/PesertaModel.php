@@ -26,43 +26,45 @@ class PesertaModel extends Model
 
     public function generateNomorPeserta(string $kategori)
     {
-        // Menentukan prefix dan maksimal panjang nomor berdasarkan kategori
+        // Tentukan awalan dan batas maksimal berdasarkan kategori
         if ($kategori === 'Umum') {
-            $prefix = 'U-';
-            $maxLength = 4; // Maksimal 2000 (4 digit)
+            $prefix = 'SFRU-';
+            $startNumber = 2025;
             $maxNumber = 2000;
-        } else if ($kategori === 'Pelajar') {
-            $prefix = 'P-';
-            $maxLength = 3; // Maksimal 200 (3 digit)
+        } elseif ($kategori === 'Pelajar') {
+            $prefix = 'SFRP-';
+            $startNumber = 2025;
             $maxNumber = 200;
         } else {
             throw new \Exception('Kategori tidak valid.');
         }
 
-        // Ambil nomor peserta terbesar untuk kategori ini
-        $lastPeserta = $this->select('nomor_peserta')
+        // Ambil semua nomor peserta yang sudah ada untuk kategori ini
+        $existing = $this->select('nomor_peserta')
             ->where('kategori_lari', $kategori)
             ->where('nomor_peserta IS NOT NULL', null, false)
-            ->orderBy('nomor_peserta', 'DESC')
-            ->first();
+            ->findAll();
 
-        if ($lastPeserta && preg_match('/\d+$/', $lastPeserta['nomor_peserta'], $matches)) {
-            $lastNumber = (int) $matches[0];
-        } else {
-            $lastNumber = 0;
+        // Ekstrak angka dari nomor peserta (misalnya 2025 dari SFRU-2025)
+        $usedNumbers = [];
+        foreach ($existing as $row) {
+            if (preg_match('/(\d+)$/', $row['nomor_peserta'], $matches)) {
+                $usedNumbers[] = (int) $matches[1];
+            }
         }
 
-        // Menghitung nomor peserta berikutnya
-        $nextNumber = $lastNumber + 1;
-
-        // Pastikan nomor tidak melebihi batas maksimal
-        if ($nextNumber > $maxNumber) {
-            throw new \Exception('Nomor peserta sudah mencapai batas maksimal untuk kategori ' . $kategori);
+        // Cari nomor terkecil yang belum digunakan
+        for ($i = 0; $i < $maxNumber; $i++) {
+            $nextNumber = $startNumber + $i;
+            if (!in_array($nextNumber, $usedNumbers)) {
+                return $prefix . $nextNumber;
+            }
         }
 
-        // Format nomor peserta dengan leading zero jika perlu
-        return $prefix . str_pad($nextNumber, $maxLength, '0', STR_PAD_LEFT);
+        // Jika sudah melebihi kuota
+        throw new \Exception('Kuota peserta kategori ' . $kategori . ' telah penuh.');
     }
+
 
 
     public function getPesertaWithKodeQR($id_peserta)

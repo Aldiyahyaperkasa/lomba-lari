@@ -50,6 +50,7 @@
                             <th>Jenis Kelamin</th>
                             <th>Kategori</th>
                             <th>Ukuran Baju</th>
+                            <th>Kode Unik Peserta</th>
                             <th>Status Pengambilan</th>
                         </tr>
                     </thead>
@@ -70,6 +71,7 @@
                                         </span>
                                     </td>
                                     <td><?= esc($row['ukuran_baju']); ?></td>
+                                    <td><?= esc($row['nomor_peserta']); ?></td>
                                     <td>
                                         <span class="badge bg-success">
                                             <i class="bi bi-check-circle-fill me-1"></i>Sudah Diambil

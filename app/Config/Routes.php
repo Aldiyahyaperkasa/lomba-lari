@@ -6,6 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+// $routes->get('/', 'Home::maintenance');
 $routes->get('/home/semuaPeserta', 'Home::semuaPeserta');
 $routes->get('/LoginController', 'LoginController::index');
 
@@ -15,7 +16,13 @@ $routes->post('PendaftaranController/store', 'PendaftaranController::store');
 
 $routes->post('/LoginController/submit', 'LoginController::submit'); 
 $routes->get('/PesertaController/index', 'PesertaController::index');
-$routes->get('peserta/exportToPDF', 'PesertaController::exportToPDF');
+$routes->post('PesertaController/uploadBuktiBayar', 'PesertaController::uploadBuktiBayar');
+
+$routes->get('PesertaController/edit', 'PesertaController::edit');
+$routes->get('PesertaController/edit/(:num)', 'PesertaController::edit/$1');
+
+$routes->post('PesertaController/update/(:num)', 'PesertaController::update/$1');
+$routes->get('PesertaController/exportToPDF', 'PesertaController::exportToPDF');
 $routes->get('LoginController/logout', 'LoginController::logout');
 
 
@@ -42,3 +49,9 @@ $routes->get('admin/pengambilan/scan', 'PengambilanBajuController::scan');
 $routes->post('admin/pengambilan/scan', 'PengambilanBajuController::prosesScan');
 $routes->get('admin/pengambilan/manual', 'PengambilanBajuController::manual');
 $routes->post('admin/pengambilan/update/(:num)', 'PengambilanBajuController::updateManual/$1');
+
+
+
+$routes->get('AdminScanController/index', 'AdminScanController::index');
+$routes->get('AdminScanController/prosesScan', 'AdminScanController::prosesScan');
+$routes->post('AdminScanController/prosesScan', 'AdminScanController::prosesScan');

@@ -143,7 +143,7 @@ if (file_exists($bannerPath)) {
 
         <div class="nama-peserta"><?= $peserta['nama_peserta']; ?></div>
         <hr>
-        <div class="info"><span class="label">Nomor Peserta:</span> <strong class="highlight"><?= $peserta['nomor_peserta']; ?></strong></div>
+        <div class="info"><span class="label">Kode Unik Peserta:</span> <strong class="highlight"><?= $peserta['nomor_peserta']; ?></strong></div>
         <div class="info"><span class="label">NIK:</span> <?= $peserta['nik']; ?></div>
         <div class="info"><span class="label">Alamat:</span> <?= $peserta['alamat']; ?></div>
         <div class="info"><span class="label">Ukuran Baju:</span> <?= $peserta['ukuran_baju']; ?></div>

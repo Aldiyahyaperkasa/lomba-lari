@@ -1,6 +1,48 @@
 <?= $this->extend('admin/layout'); ?>
 <?= $this->section('content'); ?>
 
+<style>
+#preview {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#preview video {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 10px;
+    display: none;
+    z-index: 10;
+}
+
+.scanner-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    border: 3px solid #FFD700;
+    border-radius: 10px;
+    position: relative;
+}
+</style>
+
+
 <div class="container">
     <div class="card shadow" style="border-top: 5px solid #f72585;">
         <div class="card-body">
@@ -22,9 +64,9 @@
 
             <!-- Preview box -->
             <div class="text-center mb-3">
-                <div id="preview-container" style="width: 100%; max-width: 400px; margin: 0 auto; border: 3px solid #FFD700; border-radius: 10px; position: relative;">
-                    <div id="preview" style="width: 100%; height: 300px; border-radius: 10px;"></div>
-                    <div id="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255,255,255,0.6); border-radius: 10px; display: none; z-index: 10;"></div>
+                <div id="preview-container" class="scanner-container">
+                    <div id="preview"></div>
+                    <div id="overlay"></div>
                 </div>
             </div>
 
@@ -130,16 +172,43 @@
 </script>
 
 
-<?php if (session()->getFlashdata('success')) : ?>
+<?php if (session()->getFlashdata('success_detail')) :
+    $detail = session()->getFlashdata('success_detail'); ?>
 <script>
     Swal.fire({
         icon: 'success',
-        title: 'Berhasil!',
-        text: '<?= session()->getFlashdata('success') ?>',
+        title: 'Pengambilan Baju Berhasil!',
+        html: `
+            <strong>Kode Unik Peserta:</strong> <?= esc($detail['nomor_peserta']) ?><br>
+            <strong>NIK:</strong> <?= esc($detail['nik']) ?><br>
+            <strong>Nama:</strong> <?= esc($detail['nama_peserta']) ?><br>
+            <strong>Alamat:</strong> <?= esc($detail['alamat']) ?><br>
+            <strong>Ukuran Baju:</strong> <?= esc($detail['ukuran_baju']) ?><br>
+            <strong>Riwayat Penyakit:</strong> <?= esc($detail['riwayat_penyakit']) ?>
+        `,
         confirmButtonColor: '#0095D9'
     });
 </script>
-<?php elseif (session()->getFlashdata('error')) : ?>
+<?php endif; ?>
+
+<?php if (session()->getFlashdata('sudah_diambil')) :
+    $peserta = session()->getFlashdata('sudah_diambil'); ?>
+<script>
+    Swal.fire({
+        icon: 'warning',
+        title: 'Baju Sudah Pernah Diambil!',
+        html: `
+            <strong>Kode Unik Peserta:</strong> <?= esc($peserta['nomor_peserta']) ?><br>
+            <strong>Nama:</strong> <?= esc($peserta['nama_peserta']) ?><br>
+            Anda sudah mengambil baju sebelumnya.
+        `,
+        confirmButtonColor: '#ffa500'
+    });
+</script>
+<?php endif; ?>
+
+
+<?php if (session()->getFlashdata('error')) : ?>
 <script>
     Swal.fire({
         icon: 'error',

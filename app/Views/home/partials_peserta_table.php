@@ -1,11 +1,10 @@
-<div class="table-responsive mt-3" style="font-size:0.6rem;">
+<div class="table-responsive mt-3" style="font-size:0.7rem;">
   <table class="table table-striped table-bordered">
     <thead class="table-primary">
       <tr>
         <th>No</th>
         <th>Nama</th>
-        <th>Nomor Peserta</th>
-        <th>Kategori</th>
+        <th>asal</th>
       </tr>
     </thead>
     <tbody>
@@ -14,8 +13,7 @@
           <tr>
             <td><?= $no++ ?></td>
             <td><?= esc($row['nama_peserta']) ?></td>
-            <td><?= esc($row['nomor_peserta']) ?></td>
-            <td><?= esc($row['kategori_lari']) ?></td>
+            <td><?= esc($row['alamat']) ?></td>
           </tr>
         <?php endforeach; ?>
       <?php else : ?>

@@ -29,7 +29,7 @@
         }
 
         .navbar-brand, .navbar-nav .nav-link {
-            color: #fff !important;
+            color: #000 !important;
             font-weight: 500;
         }
 
@@ -147,7 +147,7 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top bg-light">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#">
             <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo" width="60" class="me-2">
@@ -196,7 +196,6 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Nomor Peserta</th>
-                    <th>Nomor HP</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -205,8 +204,7 @@
                     <tr>
                         <td><?= $no++ ?></td>
                         <td><?= esc($row['nama_peserta']) ?></td>
-                        <td><?= esc($row['nomor_peserta']) ?></td>
-                        <td><?= esc($row['no_telepon']) ?></td>
+                        <td><?= esc($row['alamat']) ?></td>
                     </tr>
                     <?php endforeach; ?>
                 <?php else : ?>
@@ -251,7 +249,13 @@
                     <i class="bi bi-instagram text-white fs-5" target="_blank"></i>
                     <p class="small mt-1" target="_blank">Instagram : <a href="https://www.instagram.com/sangattafestivalrun?igsh=MTg5dHd0NWpuZmRodg==" class="text-white">Sangatta Festival Run</a></p>
                 </a>          
-            </div>          
+            </div>    
+            <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-3">
+                <a href="https://wa.me/628115913939" target="_blank" class="text-white d-flex align-items-center gap-2">
+                <i class="bi bi-whatsapp fs-5"></i>
+                <p class="small mb-0">Contact Person: 0811 5913 939</p>
+                </a>
+            </div>       
             <div class="my-5">
                 <img src="<?= base_url('assets/gambar/logo.png') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">
                 <img src="<?= base_url('assets/gambar/EO.jpeg') ?>" alt="Logo EO" class="mb-3" style="max-width: 80px;">

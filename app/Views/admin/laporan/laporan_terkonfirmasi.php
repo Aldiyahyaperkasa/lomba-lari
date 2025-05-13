@@ -51,6 +51,7 @@
                             <th>Jenis Kelamin</th>
                             <th>Kategori</th>
                             <th>Ukuran Baju</th>
+                            <th>Kode Unik Peserta</th>
                             <th>Darurat 1</th>
                             <th>Darurat 2</th>
                             <th>Status</th>
@@ -74,6 +75,7 @@
                                         </span>
                                     </td>
                                     <td><?= esc($row['ukuran_baju']); ?></td>
+                                    <td><?= esc($row['nomor_peserta']); ?></td>
                                     <td><?= esc($row['no_telepon_darurat_1']); ?></td>
                                     <td><?= esc($row['no_telepon_darurat_2']); ?></td>
                                     <td>

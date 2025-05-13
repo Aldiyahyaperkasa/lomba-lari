@@ -10,18 +10,18 @@ class AdminSeeder extends Seeder
     {
         $data = [
             [
-                'username' => 'admin1',
-                'password' => password_hash('admin123', PASSWORD_DEFAULT),
+                'username' => 'panitia1SFR2025',
+                'password' => password_hash('adminSFRsuccess', PASSWORD_DEFAULT),
                 'nama'     => 'Administrator Satu',
             ],
             [
-                'username' => 'admin2',
-                'password' => password_hash('admin123', PASSWORD_DEFAULT),
+                'username' => 'panitia2SFR2025',
+                'password' => password_hash('adminSFRsuccess', PASSWORD_DEFAULT),
                 'nama'     => 'Administrator Dua',
             ],
             [
-                'username' => 'admin3',
-                'password' => password_hash('admin123', PASSWORD_DEFAULT),
+                'username' => 'panitia3SFR2025',
+                'password' => password_hash('adminSFRsuccess', PASSWORD_DEFAULT),
                 'nama'     => 'Administrator Tiga',
             ],
         ];

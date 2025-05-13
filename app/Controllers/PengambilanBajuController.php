@@ -35,11 +35,36 @@ class PengambilanBajuController extends BaseController
             return redirect()->to('/admin/pengambilan/scan')->with('error', 'Kode QR tidak ditemukan!');
         }
 
+        // Ambil data peserta berdasarkan id_peserta
+        $peserta = $this->pesertaModel
+            ->where('id_peserta', $dataQR['id_peserta'])
+            ->first();
+
+        // Cek apakah sudah pernah mengambil
+        if ($dataQR['status_pengambilan'] === 'Sudah Diambil') {
+            session()->setFlashdata('sudah_diambil', [
+                'nomor_peserta'     => $peserta['nomor_peserta'] ?? '-',
+                'nama_peserta'      => $peserta['nama_peserta'] ?? '-',
+            ]);
+            return redirect()->to('/admin/pengambilan/scan');
+        }
+
         // Update status pengambilan
         $this->kodeQRModel->update($dataQR['id_qr'], ['status_pengambilan' => 'Sudah Diambil']);
 
-        return redirect()->to('/admin/pengambilan/scan')->with('success', 'Pengambilan baju berhasil dicatat!');
+        // Kirim data peserta ke flashdata untuk ditampilkan di view
+        session()->setFlashdata('success_detail', [
+            'nomor_peserta'     => $peserta['nomor_peserta'] ?? '-',
+            'nik'               => $peserta['nik'] ?? '-',
+            'nama_peserta'      => $peserta['nama_peserta'] ?? '-',
+            'alamat'            => $peserta['alamat'] ?? '-',
+            'ukuran_baju'       => $peserta['ukuran_baju'] ?? '-',
+            'riwayat_penyakit'  => $peserta['riwayat_penyakit'] ?? '-',
+        ]);
+
+        return redirect()->to('/admin/pengambilan/scan');
     }
+
 
 
     // Halaman manual
