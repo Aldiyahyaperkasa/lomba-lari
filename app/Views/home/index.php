@@ -415,40 +415,48 @@
                     <i class="bi bi-person-plus fs-3"></i>
                   </div>
                   <h5 class="fw-semibold text-primary">1. Isi Formulir Pendaftaran</h5>
-                  <p class="text-muted">Lengkapi seluruh data peserta dan data akun, lalu unggah bukti pembayaran.</p>
+                  <p class="text-muted">Lengkapi seluruh data peserta dan data akun.</p>
                 </div>
                 <div class="col-md-4 text-center">
                   <div class="icon-circle bg-info text-white mb-3">
                     <i class="bi bi-exclamation-circle fs-3"></i>
                   </div>
                   <h5 class="fw-semibold text-info">2. Simpan Data Akun</h5>
-                  <p class="text-muted">Pastikan Anda mencatat username dan password untuk login sebagai peserta.</p>
+                  <p class="text-muted">Catat atau ingat dengan baik username dan password Anda untuk login sebagai peserta.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                  <div class="icon-circle bg-secondary text-white mb-3">
+                    <i class="bi bi-upload fs-3"></i>
+                  </div>
+                  <h5 class="fw-semibold text-secondary">3. Upload Bukti Pembayaran</h5>
+                  <p class="text-muted">Setelah mengisi formulir, silakan login untuk mengunggah bukti pembayaran Anda.</p>
                 </div>
                 <div class="col-md-4 text-center">
                   <div class="icon-circle bg-pink text-white mb-3">
                     <i class="bi bi-shield-check fs-3"></i>
                   </div>
-                  <h5 class="fw-semibold text-pink">3. Verifikasi</h5>
-                  <p class="text-muted">Admin memverifikasi dalam 1x24 jam.</p>
+                  <h5 class="fw-semibold text-pink">4. Verifikasi</h5>
+                  <p class="text-muted">Admin akan melakukan verifikasi dalam waktu 1x24 jam.</p>
                 </div>
-                <div class="col-md-6 text-center">
+                <div class="col-md-4 text-center">
                   <div class="icon-circle bg-warning text-white mb-3">
                     <i class="bi bi-envelope-paper fs-3"></i>
                   </div>
-                  <h5 class="fw-semibold text-warning">4. Terima Tiket</h5>
-                  <p class="text-muted">Tiket dikirim ke email dalam bentuk QR Code.</p>
+                  <h5 class="fw-semibold text-warning">5. Terima Tiket</h5>
+                  <p class="text-muted">Tiket akan dikirimkan ke email Anda dalam bentuk QR Code.</p>
                 </div>
-                <div class="col-md-6 text-center">
+                <div class="col-md-4 text-center">
                   <div class="icon-circle bg-success text-white mb-3">
                     <i class="bi bi-box-arrow-in-right fs-3"></i>
                   </div>
-                  <h5 class="fw-semibold text-success">5. Akses Tiket</h5>
-                  <p class="text-muted">Tiket juga dapat diakses melalui halaman dashboard peserta setelah login.</p>
+                  <h5 class="fw-semibold text-success">6. Akses Tiket</h5>
+                  <p class="text-muted">Tiket juga bisa diakses melalui dashboard peserta setelah login.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </section>

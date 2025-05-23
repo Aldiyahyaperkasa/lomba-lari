@@ -139,8 +139,8 @@
       const href = this.getAttribute('href');
 
       Swal.fire({
-        title: 'Yakin ingin menolak peserta ini?',
-        text: "Status akan menjadi 'Ditolak'!",
+        title: 'Yakin ingin menolak peserta ini dan menghapus datanya?',
+        text: "data akan 'terhapus'!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#003366',

@@ -12,6 +12,23 @@ if (file_exists($bannerPath)) {
 <head>
     <meta charset="UTF-8">
     <title>Tiket Peserta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <!--<link rel="icon" href="<?= base_url('assets/gambar/logo.png') ?>" type="image/x-icon">-->
+    
+    <!-- Favicon untuk browser modern -->
+    <link rel="icon" type="image/png" href="<?= base_url('assets/gambar/logo.png') ?>">
+    
+    <!-- Favicon fallback (format .ico untuk browser lama) -->
+    <link rel="shortcut icon" href="<?= base_url('favicon.ico') ?>" type="image/x-icon">
+
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;

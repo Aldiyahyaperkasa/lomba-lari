@@ -10,16 +10,18 @@ class MaintenanceFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        $uri = service('uri')->getPath(); // ambil path URL (tanpa domain)
+        if (!env('app.maintenance')) {
+            return; // Maintenance mode tidak aktif, lanjutkan request
+        }
+        
+        $uri = trim(service('uri')->getPath(), '/'); // buang slash awal/akhir agar lebih akurat
 
-        // Daftar URL yang diizinkan (jika Anda ingin ada pengecualian, misal untuk admin login)
+        // Rute yang diizinkan
         $allowedRoutes = [
-            '',
+            '', // ini untuk sangattafestivalrun.com/
             'home/maintenance',
-            '/', // Tambahkan ini untuk mengizinkan route ke Home::index saat maintenance selesai
         ];
 
-        // Jika bukan route yang diizinkan atau file statis
         if (
             !in_array($uri, $allowedRoutes) &&
             strpos($uri, 'assets/') !== 0 &&
@@ -28,15 +30,13 @@ class MaintenanceFilter implements FilterInterface
             strpos($uri, 'images/') !== 0 &&
             strpos($uri, 'fonts/') !== 0
         ) {
-            // Tampilkan view langsung, tanpa mengubah URL
             echo view('home/maintenance');
-            // Hentikan proses eksekusi controller
             exit();
         }
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        // Tidak melakukan apa-apa
+        // Tidak perlu apa-apa di sini
     }
 }

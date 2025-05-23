@@ -182,9 +182,10 @@ class AdminPesertaController extends BaseController
 
     public function tolak($id)
     {
-        $this->pesertaModel->update($id, ['status_pendaftaran' => 'Ditolak']);
-        return redirect()->back()->with('success', 'Peserta berhasil ditolak.');
+        $this->pesertaModel->delete($id); 
+        return redirect()->back()->with('success', 'Data peserta berhasil dihapus.');
     }
+
 
 
     public function sendEmailTiket($peserta, $qrRelativePath, $tiketRelativePath)

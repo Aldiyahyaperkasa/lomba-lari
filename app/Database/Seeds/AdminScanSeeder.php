@@ -15,17 +15,12 @@ class AdminScanSeeder extends Seeder
                 'nama'     => 'Admin Scan Satu',
             ],
             [
-                'username' => 'scanQRSFR2',
+                'username' => 'scanQRSFR1',
                 'password' => password_hash('SRFscanner2025', PASSWORD_DEFAULT),
                 'nama'     => 'Admin Scan Dua',
             ],
             [
-                'username' => 'scanQRSFR3',
-                'password' => password_hash('SRFscanner2025', PASSWORD_DEFAULT),
-                'nama'     => 'Admin Scan Tiga',
-            ],
-            [
-                'username' => 'scanQRSFR4',
+                'username' => 'scanQRSFR1',
                 'password' => password_hash('SRFscanner2025', PASSWORD_DEFAULT),
                 'nama'     => 'Admin Scan Tiga',
             ],

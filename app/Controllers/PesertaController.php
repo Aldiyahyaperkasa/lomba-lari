@@ -22,38 +22,38 @@ class PesertaController extends BaseController
 
 
     public function exportToPDF()
-    {
-        ob_start();
+{
+    ob_start();
 
-        $id_peserta = session()->get('id_peserta');
-        if (!$id_peserta) {
-            return redirect()->to('/login');
-        }
-
-        $pesertaModel = new \App\Models\PesertaModel();
-        $peserta = $pesertaModel->getPesertaWithKodeQR($id_peserta);
-
-        $html = view('peserta/tiket_pdf', ['peserta' => $peserta]);
-
-        $dompdf = new \Dompdf\Dompdf();
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->set_option('isHtml5ParserEnabled', true);
-        $dompdf->set_option('isPhpEnabled', true);
-        
-        $dompdf->render();
-
-        ob_end_clean(); // penting agar tidak ada output sebelum stream
-
-        // Optional: header manual jika stream tidak otomatis mengatur
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: inline; filename="tiket_peserta.pdf"');
-        header('Cache-Control: private, max-age=0, must-revalidate');
-        header('Pragma: public');
-
-        $dompdf->stream('tiket_peserta.pdf', ['Attachment' => false]); // false = tampil di tab baru
-        exit();
+    $id_peserta = session()->get('id_peserta');
+    if (!$id_peserta) {
+        return redirect()->to('/login');
     }
+
+    $pesertaModel = new \App\Models\PesertaModel();
+    $peserta = $pesertaModel->getPesertaWithKodeQR($id_peserta);
+
+    $html = view('peserta/tiket_pdf', ['peserta' => $peserta]);
+
+    $dompdf = new \Dompdf\Dompdf();
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->set_option('isHtml5ParserEnabled', true);
+    $dompdf->set_option('isPhpEnabled', true);
+    
+    $dompdf->render();
+
+    ob_end_clean(); // penting agar tidak ada output sebelum stream
+
+    // Optional: header manual jika stream tidak otomatis mengatur
+    header('Content-Type: application/pdf');
+    header('Content-Disposition: inline; filename="tiket_peserta.pdf"');
+    header('Cache-Control: private, max-age=0, must-revalidate');
+    header('Pragma: public');
+
+    $dompdf->stream('tiket_peserta.pdf', ['Attachment' => false]); // false = tampil di tab baru
+    exit();
+}
 
 
 public function uploadBuktiBayar()
